@@ -93,27 +93,33 @@ export default function DashboardPage() {
   const recentPolicies = [
     {
       id: 1,
-      title: "Modernização do Transporte Público",
-      status: "Em Análise",
-      progress: 35,
-      dna_score: 89,
-      priority: "Alta"
+      title: "Fica Vivo!",
+      status: "Disponível",
+      progress: 100,
+      dna_score: 94,
+      priority: "Alta",
+      slug: "fica-vivo",
+      description: "Redução de homicídios de jovens (12-24 anos) em territórios vulneráveis"
     },
     {
       id: 2,
-      title: "Programa de Sustentabilidade Urbana",
-      status: "Aprovado",
-      progress: 78,
-      dna_score: 92,
-      priority: "Média"
+      title: "Estratégia Saúde da Família (ESF)",
+      status: "Disponível",
+      progress: 100,
+      dna_score: 96,
+      priority: "Alta",
+      slug: "estrategia-saude-familia",
+      description: "Modelo prioritário da Atenção Primária à Saúde no SUS"
     },
     {
       id: 3,
-      title: "Digitalização de Serviços",
-      status: "Implementando",
-      progress: 56,
-      dna_score: 85,
-      priority: "Alta"
+      title: "BRT (Rede Integrada de Transporte)",
+      status: "Disponível",
+      progress: 100,
+      dna_score: 91,
+      priority: "Média",
+      slug: "brt-transporte",
+      description: "Sistema de transporte com prioridade para ônibus"
     }
   ];
 
@@ -436,31 +442,35 @@ export default function DashboardPage() {
                 <h2 className="text-xl font-bold mb-4">📋 Políticas Recentes</h2>
                 <div className="space-y-4">
                   {recentPolicies.map((policy) => (
-                    <div key={policy.id} className="p-4 bg-white bg-opacity-50 rounded-lg">
-                      <div className="flex justify-between items-start mb-2">
-                        <h3 className="font-semibold">{policy.title}</h3>
-                        <span className={`px-2 py-1 rounded-full text-xs ${
-                          policy.priority === 'Alta' ? 'bg-red-100 text-red-600' :
-                          policy.priority === 'Média' ? 'bg-yellow-100 text-yellow-600' :
-                          'bg-green-100 text-green-600'
-                        }`}>
-                          {policy.priority}
-                        </span>
-                      </div>
+                    <Link key={policy.id} href={`/policies/${policy.slug}`}>
+                      <div className="p-4 bg-white bg-opacity-50 rounded-lg hover:bg-opacity-70 transition-all cursor-pointer">
+                        <div className="flex justify-between items-start mb-2">
+                          <h3 className="font-semibold">{policy.title}</h3>
+                          <span className={`px-2 py-1 rounded-full text-xs ${
+                            policy.priority === 'Alta' ? 'bg-red-100 text-red-600' :
+                            policy.priority === 'Média' ? 'bg-yellow-100 text-yellow-600' :
+                            'bg-green-100 text-green-600'
+                          }`}>
+                            {policy.priority}
+                          </span>
+                        </div>
 
-                      <div className="flex items-center space-x-4 mb-3">
-                        <span className="text-sm text-gray-600">Status: {policy.status}</span>
-                        <span className="text-sm text-gray-600">PolicyDNA™: {policy.dna_score}%</span>
-                      </div>
+                        <p className="text-sm text-gray-600 mb-3">{policy.description}</p>
 
-                      <div className="w-full bg-gray-200 rounded-full h-2">
-                        <div
-                          className="bg-blue-600 h-2 rounded-full"
-                          style={{ width: `${policy.progress}%` }}
-                        ></div>
+                        <div className="flex items-center space-x-4 mb-3">
+                          <span className="text-sm text-gray-600">Status: {policy.status}</span>
+                          <span className="text-sm text-gray-600">PolicyDNA™: {policy.dna_score}%</span>
+                        </div>
+
+                        <div className="w-full bg-gray-200 rounded-full h-2">
+                          <div
+                            className="bg-blue-600 h-2 rounded-full"
+                            style={{ width: `${policy.progress}%` }}
+                          ></div>
+                        </div>
+                        <div className="text-xs text-gray-500 mt-1">{policy.progress}% disponível para implementação</div>
                       </div>
-                      <div className="text-xs text-gray-500 mt-1">{policy.progress}% concluído</div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
               </div>

@@ -91,14 +91,27 @@ export default function LocalIAPage() {
   ]);
 
   useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      setUser(JSON.parse(userData));
-    } else {
-      router.push('/login');
-      return;
-    }
-    setIsLoading(false);
+    const checkAuthentication = async () => {
+      const userData = localStorage.getItem('user');
+      const token = localStorage.getItem('access_token');
+
+      if (!userData || !token) {
+        router.push('/login');
+        return;
+      }
+
+      try {
+        setUser(JSON.parse(userData));
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        router.push('/login');
+        return;
+      }
+
+      setIsLoading(false);
+    };
+
+    checkAuthentication();
   }, []);
 
   useEffect(() => {
@@ -146,6 +159,45 @@ export default function LocalIAPage() {
     setCurrentChatId(newChat.id);
   };
 
+  const refreshTokenIfNeeded = async () => {
+    const token = localStorage.getItem('access_token');
+    const refreshToken = localStorage.getItem('refresh_token');
+
+    if (!token || !refreshToken) {
+      router.push('/login');
+      return null;
+    }
+
+    try {
+      // Try to refresh the token
+      const response = await fetch('http://localhost:8000/auth/refresh', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          refresh_token: refreshToken
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        localStorage.setItem('access_token', data.access_token);
+        return data.access_token;
+      } else {
+        // Refresh failed, redirect to login
+        localStorage.removeItem('access_token');
+        localStorage.removeItem('refresh_token');
+        router.push('/login');
+        return null;
+      }
+    } catch (error) {
+      console.error('Error refreshing token:', error);
+      router.push('/login');
+      return null;
+    }
+  };
+
   const sendMessage = async () => {
     if (!message.trim() || !currentChatId) return;
 
@@ -185,22 +237,38 @@ export default function LocalIAPage() {
         timestamp: userMessage.timestamp
       });
 
-      // Call the real API
-      const token = localStorage.getItem('access_token');
-      const response = await fetch('http://localhost:8000/api/chat/completion', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          messages: apiMessages,
-          chat_type: currentChat.type,
-          project_id: currentChat.projectId,
-          max_tokens: 1000,
-          temperature: 0.7
-        })
-      });
+      // Get token and refresh if needed
+      let token = localStorage.getItem('access_token');
+
+      const makeApiCall = async (authToken: string) => {
+        return await fetch('http://localhost:8000/api/chat/completion', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authToken}`
+          },
+          body: JSON.stringify({
+            messages: apiMessages,
+            chat_type: currentChat.type,
+            project_id: currentChat.projectId,
+            max_tokens: 1000,
+            temperature: 0.7
+          })
+        });
+      };
+
+      // Try API call with current token
+      let response = await makeApiCall(token);
+
+      // If unauthorized, try to refresh token and retry
+      if (response.status === 401) {
+        const newToken = await refreshTokenIfNeeded();
+        if (newToken) {
+          response = await makeApiCall(newToken);
+        } else {
+          return; // User was redirected to login
+        }
+      }
 
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`);
@@ -224,11 +292,22 @@ export default function LocalIAPage() {
     } catch (error) {
       console.error('Error sending message:', error);
 
+      let errorContent = 'Desculpe, ocorreu um erro ao processar sua mensagem. ';
+
+      if (error.message.includes('401')) {
+        errorContent += 'Você precisa fazer login novamente.';
+        setTimeout(() => router.push('/login'), 2000);
+      } else if (error.message.includes('429')) {
+        errorContent += 'Muitas solicitações. Tente novamente em alguns minutos.';
+      } else {
+        errorContent += 'Verifique sua conexão e tente novamente.';
+      }
+
       // Fallback response on error
       const errorMessage: Message = {
         id: Date.now().toString(),
         type: 'assistant',
-        content: 'Desculpe, ocorreu um erro ao processar sua mensagem. Verifique sua conexão e tente novamente.',
+        content: errorContent,
         timestamp: new Date()
       };
 
