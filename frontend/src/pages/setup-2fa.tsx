@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 interface TwoFASetupResponse {
   secret: string;
@@ -108,28 +109,36 @@ export default function Setup2FAPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <Head>
         <title>Configurar 2FA - PolicyLabs</title>
         <meta name="description" content="Configure two-factor authentication for your PolicyLabs account" />
       </Head>
 
       {/* Navigation */}
-      <nav className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-4 px-6 py-4">
+      <header className="mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-            <span className="text-xl font-bold">PolicyLabs</span>
-          </Link>
-          <div className="flex space-x-4">
-            <Link href="/dashboard" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
+          <div className="flex items-center space-x-4">
+            <Link href="/dashboard" className="flex items-center space-x-4">
+              <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+              <span className="text-xl font-bold text-gray-900 dark:text-gray-100">PolicyLabs</span>
+            </Link>
+          </div>
+
+          <div className="flex items-center">
+            <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Configurar 2FA</h1>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <ThemeToggle variant="icon" size="sm" />
+            <Link href="/dashboard" className="btn-glass text-sm">
               Voltar
             </Link>
           </div>
         </div>
-      </nav>
+      </header>
 
-      <main className="pt-24 px-6 min-h-screen flex items-center justify-center">
+      <main className="pt-6 px-6 min-h-screen flex items-center justify-center">
         <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-8 w-full max-w-2xl">
 
           {step === 'loading' && (

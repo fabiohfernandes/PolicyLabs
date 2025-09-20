@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 interface RegistrationForm {
   email: string;
@@ -164,27 +165,36 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <Head>
         <title>Criar Conta - PolicyLabs APSS</title>
         <meta name="description" content="Crie sua conta gratuita PolicyLabs APSS com 2FA obrigatório" />
       </Head>
 
       {/* Navigation */}
-      <nav className="card-glass fixed top-0 w-full z-50 px-6 py-4">
+      <header className="mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-            <span className="text-xl font-bold">PolicyLabs APSS</span>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link href="/" className="flex items-center space-x-4">
+              <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+              <span className="text-xl font-bold text-gray-900 dark:text-gray-100">PolicyLabs</span>
+            </Link>
+          </div>
 
-          <div className="flex space-x-4">
-            <Link href="/login" className="btn-glass">Entrar</Link>
+          <div className="flex items-center">
+            <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Criar Conta</h1>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <ThemeToggle variant="icon" size="sm" />
+            <Link href="/" className="btn-glass text-sm">
+              Voltar
+            </Link>
           </div>
         </div>
-      </nav>
+      </header>
 
-      <main className="pt-24 px-6 min-h-screen flex items-center justify-center">
+      <main className="pt-6 px-6 min-h-screen flex items-center justify-center">
         <div className="card-glass p-8 w-full max-w-2xl">
 
           {/* Progress indicator */}
