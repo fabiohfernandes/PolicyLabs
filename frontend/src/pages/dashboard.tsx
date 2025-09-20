@@ -167,7 +167,7 @@ export default function DashboardPage() {
 
             <div className="flex items-center space-x-4">
               <div className="text-sm text-gray-500">
-                Última atualização: {municipalData.lastUpdate}
+                Ao vivo 20/09/2025, 17:13:05
               </div>
               <button className="btn-glass">
                 👤 {user.full_name}
@@ -204,14 +204,14 @@ export default function DashboardPage() {
                 </button>
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
-                    <Link href="/modules/policy-dna" className="block btn-glass w-full text-left p-2">
+                    <Link href="/modules/ai/policy-dna" className="block btn-glass w-full text-left p-2">
                       🧠 PolicyDNA™
                     </Link>
-                    <Link href="/modules/digital-twin" className="block btn-glass w-full text-left p-2">
+                    <Link href="/modules/digital-twin/gemeo-digital" className="block btn-glass w-full text-left p-2">
                       🏙️ Gêmeo Digital
                     </Link>
-                    <Link href="/modules/citizen-engagement" className="block btn-glass w-full text-left p-2">
-                      🗳️ Engajamento Cidadão
+                    <Link href="/modules/citizen-engagement/engajamento-cidadao" className="block btn-glass w-full text-left p-2">
+                      📊 Engajamento Cidadão
                     </Link>
                     <Link href="/modules/ai-analysis" className="block btn-glass w-full text-left p-2">
                       📊 Análise IA Avançada
@@ -319,10 +319,10 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* Statistics */}
+              {/* Info */}
               <div className="relative group">
                 <button className="btn-glass px-4 py-2 hover:scale-105 transition-transform">
-                  📈 Estatísticas
+                  📈 Info
                   <span className="ml-2 text-xs">▼</span>
                 </button>
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
@@ -406,15 +406,15 @@ export default function DashboardPage() {
                     <button className="btn-glass-primary w-full py-3 text-left px-4">
                       ➕ Nova Política Pública
                     </button>
-                    <button className="btn-glass w-full py-3 text-left px-4">
+                    <Link href="/modules/ai/policy-dna" className="btn-glass w-full py-3 text-left px-4 block">
                       🧠 Consultar PolicyDNA™
-                    </button>
-                    <button className="btn-glass w-full py-3 text-left px-4">
+                    </Link>
+                    <Link href="/create/consulta" className="btn-glass w-full py-3 text-left px-4 block">
                       🗳️ Criar Consulta Pública
-                    </button>
-                    <button className="btn-glass w-full py-3 text-left px-4">
+                    </Link>
+                    <Link href="/modules/digital-twin/gemeo-digital" className="btn-glass w-full py-3 text-left px-4 block">
                       🏙️ Abrir Gêmeo Digital
-                    </button>
+                    </Link>
                     <button className="btn-glass w-full py-3 text-left px-4">
                       📊 Gerar Relatório
                     </button>

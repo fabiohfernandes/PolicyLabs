@@ -247,39 +247,52 @@ const NovaConsultaPage = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         {/* Header */}
-        <header className="card-glass mx-6 mt-4 px-6 py-4">
+        <header className="bg-white border-b border-gray-200 px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <Link
-                href="/dashboard"
-                className="btn-glass px-4 py-2 rounded-lg text-sm hover:scale-105 transition-transform"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2 inline" />
-                Quadro
+            <div className="flex items-center space-x-6">
+              <Link href="/" className="flex items-center space-x-2">
+                <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+                <span className="text-xl font-bold">PolicyLabs</span>
               </Link>
+              <div className="h-6 w-px bg-gray-300" />
               <div>
                 <h1 className="text-xl font-bold">🗳️ Nova Consulta Pública</h1>
                 <p className="text-sm text-gray-600">Engaje cidadãos na criação de políticas públicas</p>
               </div>
             </div>
+
             <div className="flex items-center space-x-4">
-              <button
-                onClick={handleSave}
-                className="btn-glass px-4 py-2 rounded-lg text-sm hover:scale-105 transition-transform"
-              >
-                <Save className="h-4 w-4 mr-2 inline" />
-                Salvar Rascunho
+              <div className="text-sm text-gray-500">
+                Ao vivo 20/09/2025, 17:13:05
+              </div>
+              <button className="btn-glass">
+                👤 Usuário
               </button>
-              <button
-                onClick={handlePublish}
-                className="btn-glass-primary px-4 py-2 rounded-lg text-sm hover:scale-105 transition-transform"
-              >
-                <Send className="h-4 w-4 mr-2 inline" />
-                Publicar
-              </button>
+              <Link href="/dashboard" className="btn-glass text-sm">
+                ↩️ Voltar
+              </Link>
             </div>
           </div>
+
         </header>
+
+        {/* Toolbar */}
+        <div className="bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-end space-x-4">
+          <button
+            onClick={handleSave}
+            className="btn-glass px-4 py-2 rounded-lg text-sm hover:scale-105 transition-transform"
+          >
+            <Save className="h-4 w-4 mr-2 inline" />
+            Salvar Rascunho
+          </button>
+          <button
+            onClick={handlePublish}
+            className="btn-glass-primary px-4 py-2 rounded-lg text-sm hover:scale-105 transition-transform"
+          >
+            <Send className="h-4 w-4 mr-2 inline" />
+            Publicar
+          </button>
+        </div>
 
         <div className="max-w-7xl mx-auto px-6 py-8">
           {/* Navigation Tabs */}
