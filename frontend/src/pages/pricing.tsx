@@ -10,28 +10,24 @@ export default function PricingPage() {
         <meta name="description" content="Planos e preços do PolicyLabs APSS - Free, Starter, Professional, Enterprise, Federal" />
       </Head>
 
-      {/* Navigation Header */}
-      <header className="card-glass mx-6 mt-4 px-6 py-4">
+      {/* Simple Navigation */}
+      <header className="mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <div className="flex items-center space-x-2">
-            <Link href="/" className="flex items-center space-x-2">
+          <div className="flex items-center space-x-4">
+            <Link href="/" className="flex items-center space-x-4">
               <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-              <span className="text-xl font-bold">PolicyLabs APSS</span>
+              <span className="text-xl font-bold">PolicyLabs</span>
             </Link>
           </div>
 
-          <div className="hidden md:flex space-x-6">
-            <Link href="/product" className="hover:text-blue-600">Produto</Link>
-            <Link href="/pricing" className="text-blue-600 font-medium">Preços</Link>
-            <Link href="/cases" className="hover:text-blue-600">Casos de Sucesso</Link>
-            <Link href="/resources" className="hover:text-blue-600">Recursos</Link>
-            <Link href="/blog" className="hover:text-blue-600">Blog</Link>
-            <Link href="/contact" className="hover:text-blue-600">Contato</Link>
+          <div className="flex items-center">
+            <h1 className="text-xl font-semibold">Nossos planos de assinatura</h1>
           </div>
 
-          <div className="flex space-x-4">
-            <Link href="/login" className="btn-glass">Entrar</Link>
-            <Link href="/register" className="btn-glass-primary">Começar Grátis</Link>
+          <div className="flex items-center">
+            <Link href="/" className="btn-glass text-sm">
+              Voltar
+            </Link>
           </div>
         </div>
       </header>

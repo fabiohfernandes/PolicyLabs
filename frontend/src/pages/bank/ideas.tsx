@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -22,6 +22,16 @@ import {
   CheckCircle
 } from 'lucide-react';
 
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  two_factor_enabled: boolean;
+  created_at: string;
+}
+
 interface Idea {
   id: number;
   title: string;
@@ -40,8 +50,22 @@ interface Idea {
 
 const BankIdeasPage = () => {
   const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('todas');
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+    } else {
+      router.push('/login');
+      return;
+    }
+    setIsLoading(false);
+  }, [router]);
 
   const ideas: Idea[] = [
     {
@@ -237,6 +261,18 @@ const BankIdeasPage = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <>
       <Head>
@@ -247,26 +283,36 @@ const BankIdeasPage = () => {
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
         {/* Header */}
         <header className="card-glass mx-6 mt-4 px-6 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <button
-                onClick={() => router.back()}
-                className="btn-glass px-4 py-2 rounded-lg text-sm hover:scale-105 transition-transform"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2 inline" />
-                Voltar
-              </button>
-              <div>
-                <h1 className="text-xl font-bold">💡 Banco de Ideias</h1>
-                <p className="text-sm text-gray-600">Políticas Públicas que deram certo no Brasil</p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <Link href="/dashboard" className="btn-glass px-4 py-2 rounded-lg text-sm">
-                Quadro
+              <Link href="/" className="flex items-center space-x-2">
+                <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+                <span className="text-xl font-bold">PolicyLabs</span>
               </Link>
-              <Link href="/register" className="btn-glass-primary px-4 py-2 rounded-lg text-sm">
-                Implementar Ideia
+              <span className="text-sm text-gray-600">
+                Olá, {user?.full_name}
+              </span>
+            </div>
+
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold">Banco de Ideias</h1>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">
+                  {new Date().toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
+              </div>
+              <Link href="/dashboard" className="btn-glass text-sm">
+                Voltar
               </Link>
             </div>
           </div>

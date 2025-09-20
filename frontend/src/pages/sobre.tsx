@@ -20,49 +20,41 @@ export default function SobrePage() {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        {/* Navigation */}
-        <nav className="card-glass border-b border-white/20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center justify-between h-16">
-              <div className="flex items-center space-x-4">
-                <Link href="/" className="btn-glass px-4 py-2 rounded-lg text-sm">
-                  ← Início
-                </Link>
-                <div>
-                  <h1 className="text-xl font-bold">🏛️ Sobre a PolicyLabs</h1>
-                  <p className="text-sm text-gray-600">Onde a Política Encontra a Precisão</p>
-                </div>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Link href="/policydna" className="btn-glass px-4 py-2 rounded-lg text-sm">
-                  🧠 PolicyDNA
-                </Link>
-                {isLoggedIn ? (
-                  <Link href="/dashboard" className="btn-glass-primary px-4 py-2 rounded-lg text-sm">
-                    📊 Quadro
-                  </Link>
-                ) : (
-                  <Link href="/register" className="btn-glass-primary px-4 py-2 rounded-lg text-sm">
-                    Começar Grátis
-                  </Link>
-                )}
-              </div>
+        {/* Simple Navigation */}
+        <header className="mx-6 mt-4 px-6 py-4">
+          <div className="flex justify-between items-center max-w-7xl mx-auto">
+            <div className="flex items-center space-x-4">
+              <Link href="/" className="flex items-center space-x-4">
+                <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+                <span className="text-xl font-bold">PolicyLabs</span>
+              </Link>
+            </div>
+
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold">Sobre a PolicyLabs</h1>
+            </div>
+
+            <div className="flex items-center">
+              <Link href="/" className="btn-glass text-sm">
+                Voltar
+              </Link>
             </div>
           </div>
-        </nav>
+        </header>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <main className="mx-6 mt-6 pb-8">
+          <div className="max-w-7xl mx-auto">
 
           {/* Hero Section */}
           <div className="card-glass p-12 text-center mb-8">
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              AI Policy Simulation System (APSS)
+              Sistema de Simulação de Políticas por IA
             </h1>
             <p className="text-2xl text-gray-600 mb-8">
               "Onde a Política Encontra a Precisão"
             </p>
             <p className="text-xl text-gray-500 max-w-4xl mx-auto">
-              O AI Policy Simulation System (APSS) é a plataforma proprietária da PolicyLabs que democratiza a simulação inteligente de políticas públicas, permitindo que governos de qualquer porte tomem decisões baseadas em evidências que maximizam impacto social e otimizam recursos.
+              O Sistema de Simulação de Políticas por IA é a plataforma proprietária da PolicyLabs que democratiza a simulação inteligente de políticas públicas, permitindo que governos de qualquer porte tomem decisões baseadas em evidências que maximizam impacto social e otimizam recursos.
             </p>
           </div>
 
@@ -135,7 +127,7 @@ export default function SobrePage() {
               <div className="bg-green-50 rounded-xl p-6 text-center">
                 <div className="text-4xl font-bold text-green-600 mb-3">💡</div>
                 <p className="text-green-800 font-semibold mb-2">Nossa Solução</p>
-                <p className="text-sm text-green-600">PolicyLabs APSS democratiza a competência governamental</p>
+                <p className="text-sm text-green-600">PolicyLabs democratiza a competência governamental</p>
               </div>
             </div>
           </div>
@@ -287,13 +279,13 @@ export default function SobrePage() {
           <div className="card-glass p-8 mb-8">
             <div className="flex items-center mb-8">
               <div className="text-4xl mr-4">🏗️</div>
-              <h2 className="text-3xl font-bold">Arquitetura APSS</h2>
+              <h2 className="text-3xl font-bold">Arquitetura do Sistema</h2>
             </div>
 
             <div className="bg-gray-50 rounded-xl p-8 mb-6">
               <div className="space-y-4 font-mono text-sm">
                 <div className="bg-blue-100 p-4 rounded border-2 border-blue-300 text-center">
-                  <div className="font-bold text-blue-800">Plataforma APSS PolicyLabs</div>
+                  <div className="font-bold text-blue-800">Plataforma PolicyLabs</div>
                   <div className="text-blue-600">"Camada de Inteligência para o Setor Público"</div>
                 </div>
 
@@ -509,7 +501,8 @@ export default function SobrePage() {
             </div>
           </div>
 
-        </div>
+          </div>
+        </main>
       </div>
     </>
   );

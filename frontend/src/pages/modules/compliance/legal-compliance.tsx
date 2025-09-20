@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   ScaleIcon,
   DocumentCheckIcon,
@@ -18,9 +19,34 @@ import {
   ClipboardDocumentListIcon
 } from '@heroicons/react/24/outline';
 
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  two_factor_enabled: boolean;
+  created_at: string;
+}
+
 const LegalComplianceDashboard = () => {
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedCompliance, setSelectedCompliance] = useState('all');
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+    } else {
+      router.push('/login');
+      return;
+    }
+    setIsLoading(false);
+  }, [router]);
 
   const complianceItems = [
     {
@@ -180,6 +206,18 @@ const LegalComplianceDashboard = () => {
     }
   };
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <>
       <Head>
@@ -189,37 +227,41 @@ const LegalComplianceDashboard = () => {
 
       <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
         {/* Header */}
-        <div className="card-glass border-0 border-b border-white/20 rounded-none">
-          <div className="container mx-auto px-6 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                <Link href="/dashboard" className="text-white/70 hover:text-white">
-                  ← Voltar
-                </Link>
-                <div className="flex items-center space-x-3">
-                  <ScaleIcon className="h-8 w-8 text-blue-400" />
-                  <div>
-                    <h1 className="text-2xl font-bold text-white">Quadro de Conformidade Legal</h1>
-                    <p className="text-white/70">Monitoramento de conformidade legal e regulatória</p>
-                  </div>
-                </div>
+        <header className="card-glass mx-6 mt-4 px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <Link href="/" className="flex items-center space-x-2">
+                <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+                <span className="text-xl font-bold text-white">PolicyLabs</span>
+              </Link>
+              <span className="text-sm text-white/70">
+                Olá, {user?.full_name}
+              </span>
+            </div>
+
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold text-white">Conformidade Legal</h1>
+            </div>
+
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-white/70">
+                  {new Date().toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="text-right">
-                  <div className="text-white font-semibold">{stats.totalCompliance}%</div>
-                  <div className="text-white/60 text-sm">Conformidade</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-white font-semibold">{stats.riskScore}</div>
-                  <div className="text-white/60 text-sm">Score de Risco</div>
-                </div>
-                <button className="btn-glass-primary px-4 py-2">
-                  Novo Check
-                </button>
-              </div>
+              <Link href="/dashboard" className="btn-glass text-sm">
+                Voltar
+              </Link>
             </div>
           </div>
-        </div>
+        </header>
 
         <div className="container mx-auto px-6 py-8">
           {/* Navigation Tabs */}

@@ -1,29 +1,90 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  two_factor_enabled: boolean;
+  created_at: string;
+}
 
 export default function DocumentGenerationPage() {
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+    } else {
+      router.push('/login');
+      return;
+    }
+    setIsLoading(false);
+  }, [router]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 via-white to-yellow-50">
       <Head>
-        <title>Document Generation Engine - PolicyLabs APSS</title>
+        <title>Document Generation Engine - PolicyLabs</title>
         <meta name="description" content="Automated document creation and template management" />
       </Head>
 
       {/* Header Navigation */}
-      <nav className="nav-glass px-6 py-4">
-        <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <Link href="/dashboard" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-            <span className="text-xl font-bold">PolicyLabs APSS</span>
-          </Link>
+      <header className="card-glass mx-6 mt-4 px-6 py-4">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center space-x-4">
+            <Link href="/" className="flex items-center space-x-2">
+              <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+              <span className="text-xl font-bold">PolicyLabs</span>
+            </Link>
+            <span className="text-sm text-gray-600">
+              Olá, {user?.full_name}
+            </span>
+          </div>
+
+          <div className="flex items-center">
+            <h1 className="text-xl font-semibold">Documentos</h1>
+          </div>
 
           <div className="flex items-center space-x-4">
-            <span className="text-sm">Document Generation</span>
-            <Link href="/dashboard" className="btn-glass">← Voltar</Link>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              <span className="text-sm text-gray-600">
+                {new Date().toLocaleString('pt-BR', {
+                  day: '2-digit',
+                  month: '2-digit',
+                  year: 'numeric',
+                  hour: '2-digit',
+                  minute: '2-digit'
+                })}
+              </span>
+            </div>
+            <Link href="/dashboard" className="btn-glass text-sm">
+              Voltar
+            </Link>
           </div>
         </div>
-      </nav>
+      </header>
 
       <main className="pt-24 px-6">
         <div className="max-w-7xl mx-auto">

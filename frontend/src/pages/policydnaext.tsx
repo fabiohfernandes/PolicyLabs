@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
 import {
   Brain,
   Cpu,
@@ -20,45 +19,7 @@ import {
   Circle
 } from 'lucide-react';
 
-interface User {
-  id: string;
-  email: string;
-  full_name: string;
-  role: string;
-  is_verified: boolean;
-  two_factor_enabled: boolean;
-  created_at: string;
-}
-
-const PolicyDNAPage = () => {
-  const router = useRouter();
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const userData = localStorage.getItem('user');
-    if (userData) {
-      const parsedUser = JSON.parse(userData);
-      setUser(parsedUser);
-    } else {
-      router.push('/login');
-      return;
-    }
-    setIsLoading(false);
-  }, [router]);
-
-  if (isLoading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return null;
-  }
-
+const PolicyDNAExtPage = () => {
   return (
     <>
       <Head>
@@ -67,37 +28,22 @@ const PolicyDNAPage = () => {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
-        {/* Standard Navbar */}
-        <header className="card-glass mx-6 mt-4 px-6 py-4">
-          <div className="flex justify-between items-center">
+        {/* Simple Navigation */}
+        <header className="mx-6 mt-4 px-6 py-4">
+          <div className="flex justify-between items-center max-w-7xl mx-auto">
             <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center space-x-4">
                 <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
                 <span className="text-xl font-bold">PolicyLabs</span>
               </Link>
-              <span className="text-sm text-gray-600">
-                Olá, {user?.full_name}
-              </span>
             </div>
 
             <div className="flex items-center">
-              <h1 className="text-xl font-semibold">DNA da PolicyLabs</h1>
+              <h1 className="text-xl font-semibold">O que é PolicyDNA</h1>
             </div>
 
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm text-gray-600">
-                  {new Date().toLocaleString('pt-BR', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                  })}
-                </span>
-              </div>
-              <Link href="/dashboard" className="btn-glass text-sm">
+            <div className="flex items-center">
+              <Link href="/" className="btn-glass text-sm">
                 Voltar
               </Link>
             </div>
@@ -122,12 +68,12 @@ const PolicyDNAPage = () => {
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link href="/modules/ai/policy-dna" className="btn-glass-primary px-8 py-4 text-lg font-semibold">
-                  Explorar PolicyDNA™
+                <Link href="/register" className="btn-glass-primary px-8 py-4 text-lg font-semibold">
+                  Começar Gratuitamente
                   <ArrowRight className="inline ml-2 h-5 w-5" />
                 </Link>
-                <Link href="/register" className="btn-glass px-8 py-4 text-lg font-semibold">
-                  Começar Agora
+                <Link href="/" className="btn-glass px-8 py-4 text-lg font-semibold">
+                  ← Voltar à Página Inicial
                 </Link>
               </div>
             </div>
@@ -296,7 +242,7 @@ const PolicyDNAPage = () => {
                     <div>
                       <h3 className="text-xl font-bold text-gray-900 mb-3">Monitoramento Contínuo</h3>
                       <p className="text-gray-600 mb-4">
-                        Acompanhe a performance de políticas implementadas e receba alertas de desvios em relação às expectativas.
+                        Acompanhe a performance de políticas implementadas e receba alertos de desvios em relação às expectativas.
                       </p>
                       <div className="flex items-center space-x-2">
                         <CheckCircle className="h-4 w-4 text-green-600" />
@@ -318,12 +264,15 @@ const PolicyDNAPage = () => {
                   Junte-se aos municípios que já utilizam o PolicyDNA™ para tomar decisões mais inteligentes e eficazes.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href="/modules/ai/policy-dna" className="btn-glass-primary px-8 py-4 text-lg font-semibold">
-                    Acessar PolicyDNA™
+                  <Link href="/register" className="btn-glass-primary px-8 py-4 text-lg font-semibold">
+                    Começar Gratuitamente
                     <ArrowRight className="inline ml-2 h-5 w-5" />
                   </Link>
                   <Link href="/sobre" className="btn-glass px-8 py-4 text-lg font-semibold">
                     Saiba Mais
+                  </Link>
+                  <Link href="/" className="btn-glass px-8 py-4 text-lg font-semibold">
+                    Voltar ao Início
                   </Link>
                 </div>
               </div>
@@ -335,4 +284,4 @@ const PolicyDNAPage = () => {
   );
 };
 
-export default PolicyDNAPage;
+export default PolicyDNAExtPage;

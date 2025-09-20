@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  two_factor_enabled: boolean;
+  created_at: string;
+}
 import {
   ArrowLeft,
   Users,
@@ -52,6 +62,20 @@ interface IdeaDetail {
 const IdeaDetailPage = () => {
   const router = useRouter();
   const { slug } = router.query;
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+    } else {
+      router.push('/login');
+      return;
+    }
+    setIsLoading(false);
+  }, [router]);
 
   const ideasData: { [key: string]: IdeaDetail } = {
     'bolsa-familia': {
@@ -360,6 +384,18 @@ const IdeaDetailPage = () => {
 
   const idea = slug ? ideasData[slug as string] : null;
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
   if (!idea) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
@@ -400,34 +436,45 @@ const IdeaDetailPage = () => {
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-        {/* Header */}
+        {/* Standard Navbar */}
         <header className="card-glass mx-6 mt-4 px-6 py-4">
-          <div className="flex items-center justify-between">
+          <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Link
-                href="/bank/ideas"
-                className="btn-glass px-4 py-2 rounded-lg text-sm hover:scale-105 transition-transform"
-              >
-                <ArrowLeft className="h-4 w-4 mr-2 inline" />
-                Banco de Ideias
+              <Link href="/" className="flex items-center space-x-2">
+                <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+                <span className="text-xl font-bold">PolicyLabs</span>
               </Link>
-              <div>
-                <h1 className="text-xl font-bold">{idea.title}</h1>
-                <p className="text-sm text-gray-600">{idea.category} • {idea.area}</p>
-              </div>
+              <span className="text-sm text-gray-600">
+                Olá, {user?.full_name}
+              </span>
             </div>
+
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold">{idea.title}</h1>
+            </div>
+
             <div className="flex items-center space-x-4">
-              <Link href="/dashboard" className="btn-glass px-4 py-2 rounded-lg text-sm">
-                Quadro
-              </Link>
-              <Link href="/register" className="btn-glass-primary px-4 py-2 rounded-lg text-sm">
-                Implementar Agora
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">
+                  {new Date().toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
+              </div>
+              <Link href="/bank/ideas" className="btn-glass text-sm">
+                Voltar
               </Link>
             </div>
           </div>
         </header>
 
-        <div className="max-w-7xl mx-auto px-6 py-8">
+        <main className="mx-6 mt-6 pb-8">
+          <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
           <div className="card-glass p-8 mb-8">
             <div className="flex items-start justify-between mb-6">
@@ -597,7 +644,8 @@ const IdeaDetailPage = () => {
               </div>
             </div>
           </div>
-        </div>
+          </div>
+        </main>
       </div>
     </>
   );

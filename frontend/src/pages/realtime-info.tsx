@@ -3,6 +3,16 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  two_factor_enabled: boolean;
+  created_at: string;
+}
+
 interface NewsItem {
   id: string;
   title: string;
@@ -27,7 +37,7 @@ interface Alert {
 
 export default function RealtimeInfoPage() {
   const router = useRouter();
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -124,7 +134,8 @@ export default function RealtimeInfoPage() {
   useEffect(() => {
     const userData = localStorage.getItem('user');
     if (userData) {
-      setUser(JSON.parse(userData));
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
     } else {
       router.push('/login');
       return;
@@ -210,7 +221,7 @@ export default function RealtimeInfoPage() {
   return (
     <>
       <Head>
-        <title>Novidades | PolicyLabs APSS</title>
+        <title>Novidades | PolicyLabs</title>
         <meta name="description" content="Informações em tempo real para gestão pública municipal" />
       </Head>
 
@@ -219,23 +230,35 @@ export default function RealtimeInfoPage() {
         <header className="card-glass mx-6 mt-4 px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Link href="/dashboard" className="flex items-center space-x-2 text-gray-700 hover:text-blue-600">
-                <span>← Voltar</span>
+              <Link href="/" className="flex items-center space-x-2">
+                <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+                <span className="text-xl font-bold">PolicyLabs</span>
               </Link>
-              <div>
-                <h1 className="text-xl font-bold">📰 Novidades</h1>
-                <p className="text-sm text-gray-500">Informações em tempo real para sua gestão</p>
-              </div>
+              <span className="text-sm text-gray-600">
+                Olá, {user?.full_name}
+              </span>
+            </div>
+
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold">Novidades</h1>
             </div>
 
             <div className="flex items-center space-x-4">
               <div className="flex items-center space-x-2">
-                <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="text-sm text-gray-600">Ao vivo</span>
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">
+                  {new Date().toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
               </div>
-              <span className="text-sm text-gray-500">
-                {new Date().toLocaleString('pt-BR')}
-              </span>
+              <Link href="/dashboard" className="btn-glass text-sm">
+                Voltar
+              </Link>
             </div>
           </div>
         </header>

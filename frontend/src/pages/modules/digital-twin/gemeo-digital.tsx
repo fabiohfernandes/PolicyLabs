@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import {
   ArrowLeft,
   Layers,
@@ -66,9 +67,21 @@ interface FeatureInfo {
   layer: string;
 }
 
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  two_factor_enabled: boolean;
+  created_at: string;
+}
+
 const GemeoDigitalPage = () => {
-  const mapRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const mapRef = useRef<HTMLDivElement>(null);
   const [selectedBasemap, setSelectedBasemap] = useState<'streets' | 'satellite' | 'terrain'>('streets');
   const [activeTool, setActiveTool] = useState<'select' | 'measure' | 'marker' | 'polygon'>('select');
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -220,6 +233,16 @@ const GemeoDigitalPage = () => {
   };
 
   useEffect(() => {
+    // Load user data from localStorage
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      setUser(parsedUser);
+    } else {
+      router.push('/login');
+      return;
+    }
+
     // Simulate progressive map loading with realistic steps
     const loadingSteps = [
       { step: 'Carregando base cartográfica...', progress: 20 },
@@ -241,7 +264,7 @@ const GemeoDigitalPage = () => {
     }, 300);
 
     return () => clearInterval(progressTimer);
-  }, []);
+  }, [router]);
 
   // Smooth animations for layer changes
   const animateLayerChange = useCallback(() => {
@@ -333,6 +356,18 @@ const GemeoDigitalPage = () => {
     { id: 'polygon', name: 'Área', icon: <Square className="h-4 w-4" /> }
   ];
 
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
+
   return (
     <>
       <Head>
@@ -371,29 +406,39 @@ const GemeoDigitalPage = () => {
 
       <div className="h-screen bg-gray-100 overflow-hidden">
         {/* Header */}
-        <header className="bg-white border-b border-gray-200 px-6 py-4 flex items-center justify-between z-50 relative">
-          <div className="flex items-center space-x-6">
-            <Link href="/" className="flex items-center space-x-2">
-              <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-              <span className="text-xl font-bold">PolicyLabs</span>
-            </Link>
-            <div className="h-6 w-px bg-gray-300" />
-            <div>
-              <h1 className="text-lg font-semibold text-gray-900">🌍 Gêmeo Digital</h1>
-              <p className="text-sm text-gray-500">{municipalData.name} • {municipalData.population.toLocaleString('pt-BR')} hab.</p>
+        <header className="card-glass mx-6 mt-4 px-6 py-4">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-4">
+              <Link href="/" className="flex items-center space-x-2">
+                <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+                <span className="text-xl font-bold">PolicyLabs</span>
+              </Link>
+              <span className="text-sm text-gray-600">
+                Olá, {user?.full_name}
+              </span>
             </div>
-          </div>
 
-          <div className="flex items-center space-x-4">
-            <div className="text-sm text-gray-500">
-              Ao vivo 20/09/2025, 17:13:05
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold">Gêmeo Digital</h1>
             </div>
-            <button className="btn-glass">
-              👤 Usuário
-            </button>
-            <Link href="/dashboard" className="btn-glass text-sm">
-              ↩️ Voltar
-            </Link>
+
+            <div className="flex items-center space-x-4">
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">
+                  {new Date().toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
+              </div>
+              <Link href="/dashboard" className="btn-glass text-sm">
+                Voltar
+              </Link>
+            </div>
           </div>
         </header>
 

@@ -156,24 +156,34 @@ export default function DashboardPage() {
         <header className="card-glass mx-6 mt-4 px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Link href="/sobre" className="flex items-center space-x-2">
+              <Link href="/" className="flex items-center space-x-2">
                 <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
                 <span className="text-xl font-bold">PolicyLabs</span>
               </Link>
-              <div className="text-sm text-gray-500">
-                {municipalData.municipality} • {municipalData.population} hab. • Plano {municipalData.tier}
-              </div>
+              <span className="text-sm text-gray-600">
+                Olá, {user.full_name}
+              </span>
+            </div>
+
+            <div className="flex items-center">
+              <h1 className="text-xl font-semibold">Quadro Geral</h1>
             </div>
 
             <div className="flex items-center space-x-4">
-              <div className="text-sm text-gray-500">
-                Ao vivo 20/09/2025, 17:13:05
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-gray-600">
+                  {new Date().toLocaleString('pt-BR', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                  })}
+                </span>
               </div>
-              <button className="btn-glass">
-                👤 {user.full_name}
-              </button>
               <button onClick={handleLogout} className="btn-glass text-sm">
-                🚪 Sair
+                Sair
               </button>
             </div>
           </div>

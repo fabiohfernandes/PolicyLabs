@@ -93,15 +93,23 @@ export default function LoginPage() {
       </Head>
 
       {/* Navigation */}
-      <nav className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-4 px-6 py-4">
+      <nav className="mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
-          <Link href="/" className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-            <span className="text-xl font-bold">PolicyLabs APSS</span>
-          </Link>
+          <div className="flex items-center space-x-4">
+            <Link href="/" className="flex items-center space-x-4">
+              <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
+              <span className="text-xl font-bold">PolicyLabs</span>
+            </Link>
+          </div>
 
-          <div className="flex space-x-4">
-            <Link href="/register" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105">Criar Conta</Link>
+          <div className="flex items-center">
+            <h1 className="text-xl font-semibold">Seja Bem-Vindo a PolicyLabs</h1>
+          </div>
+
+          <div className="flex items-center">
+            <Link href="/" className="btn-glass text-sm">
+              Voltar
+            </Link>
           </div>
         </div>
       </nav>

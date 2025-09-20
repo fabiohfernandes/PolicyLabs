@@ -15,16 +15,15 @@ export default function LandingPage() {
       <header className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center space-x-2">
-            <Link href="/sobre" className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
               <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
               <span className="text-xl font-bold">PolicyLabs</span>
-            </Link>
+            </div>
           </div>
 
           <div className="hidden md:flex space-x-6">
             <Link href="/sobre" className="hover:text-blue-600">Sobre</Link>
-            <Link href="/policydna" className="hover:text-blue-600">PolicyDNA</Link>
-            <Link href="/product" className="hover:text-blue-600">Produto</Link>
+            <Link href="/policydnaext" className="hover:text-blue-600">PolicyDNA</Link>
             <Link href="/pricing" className="hover:text-blue-600">Preços</Link>
             <Link href="/cases" className="hover:text-blue-600">Casos de Sucesso</Link>
             <Link href="/resources" className="hover:text-blue-600">Recursos</Link>
@@ -56,7 +55,7 @@ export default function LandingPage() {
             <Link href="/register" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-white hover:scale-105">
               🚀 Começar Gratuitamente
             </Link>
-            <Link href="/product" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
+            <Link href="/register" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
               Ver Demo ao Vivo
             </Link>
             <Link href="/contact" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
@@ -69,34 +68,100 @@ export default function LandingPage() {
         {/* Problem Section */}
         <section className="mx-6 mt-16">
           <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-12">
-            <h2 className="text-4xl font-bold text-center mb-8 text-red-600">
+            <h2 className="text-4xl font-bold text-center mb-12 text-red-600">
               O Problema é Real
             </h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-red-500 mb-2">73%</div>
-                <p className="text-sm">dos administradores brasileiros carecem de formação em administração pública</p>
+
+              {/* Card 1 */}
+              <div className="relative bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-200 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">!</div>
+                </div>
+                <div className="text-5xl font-bold text-red-600 mb-3">73%</div>
+                <div className="w-full bg-red-200 rounded-full h-2 mb-4">
+                  <div className="bg-red-500 h-2 rounded-full w-[73%]"></div>
+                </div>
+                <p className="text-sm font-medium text-red-800">dos administradores brasileiros carecem de formação em administração pública</p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-red-500 mb-2">US$ 2,8T</div>
-                <p className="text-sm">desperdiçados globalmente em políticas ineficazes</p>
+
+              {/* Card 2 */}
+              <div className="relative bg-gradient-to-br from-orange-50 to-orange-100 border-2 border-orange-200 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-orange-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">💸</div>
+                </div>
+                <div className="text-4xl font-bold text-orange-600 mb-3">US$ 2,8T</div>
+                <div className="flex justify-center mb-4">
+                  <svg className="w-16 h-16 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd"></path>
+                  </svg>
+                </div>
+                <p className="text-sm font-medium text-orange-800">desperdiçados globalmente em políticas ineficazes</p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-red-500 mb-2">45-60%</div>
-                <p className="text-sm">taxa de falha de políticas por avaliação inadequada</p>
+
+              {/* Card 3 */}
+              <div className="relative bg-gradient-to-br from-red-50 to-pink-100 border-2 border-pink-200 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-pink-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">❌</div>
+                </div>
+                <div className="text-4xl font-bold text-pink-600 mb-3">45-60%</div>
+                <div className="relative w-16 h-16 mx-auto mb-4">
+                  <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 36 36">
+                    <path d="M18 2.0845 A 15.9155 15.9155 0 0 1 18 33.9155" stroke="#fce7f3" strokeWidth="3" fill="none"/>
+                    <path d="M18 2.0845 A 15.9155 15.9155 0 0 1 18 33.9155" stroke="#ec4899" strokeWidth="3" strokeDasharray="52.5, 100" fill="none"/>
+                  </svg>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <span className="text-xs font-bold text-pink-600">FALHA</span>
+                  </div>
+                </div>
+                <p className="text-sm font-medium text-pink-800">taxa de falha de políticas por avaliação inadequada</p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-red-500 mb-2">78%</div>
-                <p className="text-sm">dos cidadãos excluídos das decisões de política pública</p>
+
+              {/* Card 4 */}
+              <div className="relative bg-gradient-to-br from-purple-50 to-purple-100 border-2 border-purple-200 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-purple-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">👥</div>
+                </div>
+                <div className="text-5xl font-bold text-purple-600 mb-3">78%</div>
+                <div className="flex justify-center space-x-1 mb-4">
+                  <div className="w-3 h-8 bg-purple-200 rounded"></div>
+                  <div className="w-3 h-6 bg-purple-300 rounded"></div>
+                  <div className="w-3 h-10 bg-purple-500 rounded"></div>
+                  <div className="w-3 h-4 bg-purple-200 rounded"></div>
+                  <div className="w-3 h-7 bg-purple-300 rounded"></div>
+                </div>
+                <p className="text-sm font-medium text-purple-800">dos cidadãos excluídos das decisões de política pública</p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-red-500 mb-2">2,3x</div>
-                <p className="text-sm">custo médio para reverter políticas fracassadas</p>
+
+              {/* Card 5 */}
+              <div className="relative bg-gradient-to-br from-red-50 to-red-100 border-2 border-red-200 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-red-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">📈</div>
+                </div>
+                <div className="text-5xl font-bold text-red-600 mb-3">2,3x</div>
+                <div className="flex justify-center items-end space-x-1 mb-4">
+                  <div className="w-4 h-4 bg-red-300 rounded"></div>
+                  <div className="w-4 h-6 bg-red-400 rounded"></div>
+                  <div className="w-4 h-10 bg-red-500 rounded"></div>
+                </div>
+                <p className="text-sm font-medium text-red-800">custo médio para reverter políticas fracassadas</p>
               </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-green-500 mb-2">💡</div>
-                <p className="text-sm font-semibold text-green-600">PolicyLabs é a solução</p>
+
+              {/* Solution Card */}
+              <div className="relative bg-gradient-to-br from-green-50 to-emerald-100 border-2 border-green-300 rounded-xl p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <div className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold">✓</div>
+                </div>
+                <div className="text-5xl mb-3">💡</div>
+                <div className="flex justify-center mb-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-bold text-xs">PL</span>
+                  </div>
+                </div>
+                <p className="text-sm font-bold text-green-700">PolicyLabs é a solução</p>
+                <p className="text-xs text-green-600 mt-2">Transformando a gestão pública com IA</p>
               </div>
+
             </div>
           </div>
         </section>
@@ -237,10 +302,10 @@ export default function LandingPage() {
           <div>
             <h4 className="font-semibold mb-4">Produto</h4>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/product">Visão Geral</Link></li>
-              <li><Link href="/product/policy-dna">PolicyDNA™</Link></li>
-              <li><Link href="/product/digital-twin">Gêmeo Digital</Link></li>
-              <li><Link href="/product/citizen-engagement">Engajamento Cidadão</Link></li>
+              <li><Link href="/policydnaext">PolicyDNA™</Link></li>
+              <li><Link href="/sobre">Visão Geral</Link></li>
+              <li><Link href="/register">Começar Grátis</Link></li>
+              <li><Link href="/contact">Demonstração</Link></li>
             </ul>
           </div>
 
