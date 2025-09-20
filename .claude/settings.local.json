@@ -6,7 +6,8 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(docker compose logs:*)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git check-ignore:*)"
     ],
     "deny": [],
     "ask": []

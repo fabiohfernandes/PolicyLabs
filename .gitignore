@@ -51,7 +51,7 @@ ehthumbs.db
 Thumbs.db
 
 # Docker
-.dockerignore
+# .dockerignore  # Should be committed to ensure consistent builds
 
 # Python
 __pycache__/
