@@ -1,9 +1,55 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
-export default function Dashboard() {
+interface User {
+  id: string;
+  email: string;
+  full_name: string;
+  role: string;
+  is_verified: boolean;
+  two_factor_enabled: boolean;
+  created_at: string;
+}
+
+export default function DashboardPage() {
+  const router = useRouter();
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [activeTab, setActiveTab] = useState('overview');
+
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    console.log('Raw userData from localStorage:', userData);
+    if (userData) {
+      const parsedUser = JSON.parse(userData);
+      console.log('Parsed user data:', parsedUser);
+      setUser(parsedUser);
+    } else {
+      router.push('/login');
+    }
+    setIsLoading(false);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    localStorage.removeItem('user');
+    router.push('/');
+  };
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return null;
+  }
 
   // Mock data for demonstration
   const municipalData = {
@@ -118,26 +164,26 @@ export default function Dashboard() {
                 Última atualização: {municipalData.lastUpdate}
               </div>
               <button className="btn-glass">
-                👤 Administrador
+                👤 {user.full_name}
               </button>
-              <Link href="/" className="btn-glass text-sm">
+              <button onClick={handleLogout} className="btn-glass text-sm">
                 🚪 Sair
-              </Link>
+              </button>
             </div>
           </div>
         </header>
 
         {/* Main Navigation Bar */}
-        <nav className="mx-6 mt-4">
+        <nav className="mx-6 mt-4 relative z-[10000]">
           <div className="card-glass px-4 py-3">
             <div className="flex flex-wrap justify-center gap-2 text-sm">
               {/* Core AI Tools */}
               <Link href="/local-ia" className="btn-glass px-4 py-2 hover:scale-105 transition-transform">
-                🤖 Local IA
+                🔍 Pesquisa
               </Link>
 
               <Link href="/realtime-info" className="btn-glass px-4 py-2 hover:scale-105 transition-transform">
-                📡 Realtime Info & News
+                📰 Novidades
               </Link>
 
               {/* Modules (Plan-dependent) */}
@@ -146,7 +192,7 @@ export default function Dashboard() {
                   🧩 Módulos
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-64 card-glass p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/modules/policy-dna" className="block btn-glass w-full text-left p-2">
                       🧠 PolicyDNA™
@@ -174,7 +220,7 @@ export default function Dashboard() {
                   ➕ Criar
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 card-glass p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/create/project" className="block btn-glass w-full text-left p-2">
                       📁 Novo Projeto
@@ -198,7 +244,7 @@ export default function Dashboard() {
                   🏦 Bancos
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 card-glass p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/bank/ideas" className="block btn-glass w-full text-left p-2">
                       💡 Banco de Ideias
@@ -207,18 +253,55 @@ export default function Dashboard() {
                       📁 Banco de Projetos
                     </Link>
                     <Link href="/bank/documents" className="block btn-glass w-full text-left p-2">
-                      📄 Banco de Documentos
+                      📄 Banco de Docs
                     </Link>
                   </div>
                 </div>
               </div>
 
               {/* Dashboard */}
-              <Link href="/dashboard" className={`px-4 py-2 hover:scale-105 transition-transform ${
-                activeTab === 'overview' ? 'btn-glass-primary' : 'btn-glass'
-              }`}>
-                📊 Dashboard
-              </Link>
+              <div className="relative group">
+                <button className="btn-glass-primary px-4 py-2 hover:scale-105 transition-transform">
+                  📊 Dashboard
+                  <span className="ml-2 text-xs">▼</span>
+                </button>
+                <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
+                  <div className="space-y-2">
+                    <button
+                      onClick={() => setActiveTab('overview')}
+                      className={`block w-full text-left p-2 transition-all ${
+                        activeTab === 'overview' ? 'btn-glass-primary' : 'btn-glass hover:scale-105'
+                      }`}
+                    >
+                      📊 Visão Geral
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('policies')}
+                      className={`block w-full text-left p-2 transition-all ${
+                        activeTab === 'policies' ? 'btn-glass-primary' : 'btn-glass hover:scale-105'
+                      }`}
+                    >
+                      📋 Políticas
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('analytics')}
+                      className={`block w-full text-left p-2 transition-all ${
+                        activeTab === 'analytics' ? 'btn-glass-primary' : 'btn-glass hover:scale-105'
+                      }`}
+                    >
+                      📈 Relatórios
+                    </button>
+                    <button
+                      onClick={() => setActiveTab('citizens')}
+                      className={`block w-full text-left p-2 transition-all ${
+                        activeTab === 'citizens' ? 'btn-glass-primary' : 'btn-glass hover:scale-105'
+                      }`}
+                    >
+                      👥 Cidadãos
+                    </button>
+                  </div>
+                </div>
+              </div>
 
               {/* Statistics */}
               <div className="relative group">
@@ -226,7 +309,7 @@ export default function Dashboard() {
                   📈 Estatísticas
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-48 card-glass p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/stats/city" className="block btn-glass w-full text-left p-2">
                       🏛️ Cidade
@@ -250,7 +333,7 @@ export default function Dashboard() {
                   ⚙️ Config
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full right-0 mt-2 w-48 card-glass p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/config/profile" className="block btn-glass w-full text-left p-2">
                       👤 Perfil
@@ -275,32 +358,6 @@ export default function Dashboard() {
           </div>
         </nav>
 
-        {/* Navigation Tabs */}
-        <nav className="mx-6 mt-6">
-          <div className="card-glass px-2 py-2">
-            <div className="flex space-x-2">
-              {[
-                { id: 'overview', label: '📊 Visão Geral', icon: '📊' },
-                { id: 'policies', label: '📋 Políticas', icon: '📋' },
-                { id: 'analytics', label: '📈 Analytics', icon: '📈' },
-                { id: 'citizens', label: '👥 Cidadãos', icon: '👥' },
-                { id: 'settings', label: '⚙️ Configurações', icon: '⚙️' }
-              ].map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={`px-4 py-2 rounded-lg transition-all ${
-                    activeTab === tab.id
-                      ? 'btn-glass-primary'
-                      : 'btn-glass hover:scale-105'
-                  }`}
-                >
-                  {tab.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        </nav>
 
         {/* Main Content */}
         <main className="mx-6 mt-6 pb-8">
@@ -440,17 +497,6 @@ export default function Dashboard() {
             </div>
           )}
 
-          {activeTab === 'settings' && (
-            <div className="card-glass p-8 text-center">
-              <h2 className="text-2xl font-bold mb-4">⚙️ Configurações</h2>
-              <p className="text-gray-600 mb-6">
-                Configurações do sistema, usuários e integrações
-              </p>
-              <button className="btn-glass-primary">
-                Em Desenvolvimento
-              </button>
-            </div>
-          )}
         </main>
 
         {/* Footer */}

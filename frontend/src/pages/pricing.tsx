@@ -363,6 +363,5 @@ export default function PricingPage() {
         </div>
       </footer>
     </div>
-    </>
   );
 }

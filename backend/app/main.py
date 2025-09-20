@@ -14,6 +14,11 @@ from typing import List, Optional, Dict, Any
 import os
 from datetime import datetime
 import uvicorn
+import asyncio
+
+# Import our modules
+from app.database import check_database_connection, health_check as db_health_check, init_async_db
+from app.auth_routes import router as auth_router
 
 # Application setup
 app = FastAPI(
@@ -23,6 +28,9 @@ app = FastAPI(
     docs_url="/docs",
     redoc_url="/redoc"
 )
+
+# Include authentication routes
+app.include_router(auth_router)
 
 # CORS configuration for frontend integration
 app.add_middleware(
@@ -49,19 +57,38 @@ class ApiResponse(BaseModel):
     message: str
     data: Optional[Dict[str, Any]] = None
 
+# Startup event
+@app.on_event("startup")
+async def startup_event():
+    """Initialize application on startup"""
+    try:
+        # Check database connection
+        db_connected = await check_database_connection()
+        if not db_connected:
+            print("Warning: Database connection failed during startup")
+        else:
+            print("Database connection successful")
+            # Initialize database tables if needed
+            # await init_async_db()  # Uncomment for first-time setup
+    except Exception as e:
+        print(f"Startup error: {e}")
+
 # Health check endpoint
 @app.get("/health", response_model=HealthResponse)
 async def health_check():
     """Health check endpoint for monitoring system status"""
+    db_health = await db_health_check()
+
     return HealthResponse(
-        status="healthy",
+        status="healthy" if db_health["status"] == "healthy" else "degraded",
         timestamp=datetime.utcnow().isoformat(),
         version="2.0.0",
         services={
-            "database": "connected",
+            "database": db_health["status"],
             "redis": "connected",
             "weaviate": "connected",
-            "policy_dna": "ready"
+            "policy_dna": "ready",
+            "authentication": "ready"
         }
     )
 
@@ -149,6 +176,20 @@ async def get_dashboard_analytics():
             "active_policies": 0,
             "success_rate": "85%",
             "monthly_growth": "15%"
+        }
+    }
+
+# Simple test registration endpoint
+@app.post("/api/test-register")
+async def test_register(user_data: dict):
+    """Simple test registration without async DB"""
+    return {
+        "success": True,
+        "message": "User registered successfully! You can now login.",
+        "user": {
+            "email": user_data.get("email"),
+            "full_name": user_data.get("full_name"),
+            "verified": True
         }
     }
 

@@ -12,7 +12,7 @@ export default function LandingPage() {
       </Head>
 
       {/* Navigation Header */}
-      <header className="card-glass mx-6 mt-4 px-6 py-4">
+      <header className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center space-x-2">
             <Link href="/" className="flex items-center space-x-2">
@@ -31,15 +31,15 @@ export default function LandingPage() {
           </div>
 
           <div className="flex space-x-4">
-            <Link href="/login" className="btn-glass">Entrar</Link>
-            <Link href="/register" className="btn-glass-primary">Começar Grátis</Link>
+            <Link href="/login" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105">Entrar</Link>
+            <Link href="/register" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105">Começar Grátis</Link>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
       <main className="pt-4">
-        <section className="card-glass mx-6 mt-8 p-12 text-center">
+        <section className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-8 p-12 text-center">
           <h1 className="text-6xl font-bold mb-6 text-gradient">
             PolicyLabs APSS
           </h1>
@@ -52,15 +52,57 @@ export default function LandingPage() {
           </p>
 
           <div className="flex gap-6 justify-center">
-            <Link href="/register" className="btn-glass-primary text-lg px-8 py-4">
+            <Link href="/register" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-white hover:scale-105">
               🚀 Começar Gratuitamente
             </Link>
-            <Link href="/product" className="btn-glass text-lg px-8 py-4">
+            <Link href="/product" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
               Ver Demo ao Vivo
             </Link>
-            <Link href="/contact" className="btn-glass text-lg px-8 py-4">
+            <Link href="/contact" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
               Agendar Demonstração
             </Link>
+          </div>
+        </section>
+
+        {/* Demo Section for 2FA */}
+        <section className="mx-6 mt-16">
+          <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-8 text-center">
+            <h2 className="text-3xl font-bold mb-4">🔐 Teste a Autenticação 2FA</h2>
+            <p className="text-lg text-gray-600 mb-6">
+              Experimente nosso sistema de autenticação de dois fatores com TOTP
+            </p>
+            <div className="flex gap-4 justify-center flex-wrap">
+              <Link
+                href="/register"
+                className="bg-blue-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
+              >
+                1. Criar Conta
+              </Link>
+              <Link
+                href="/login"
+                className="bg-green-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
+              >
+                2. Fazer Login
+              </Link>
+              <Link
+                href="/setup-2fa"
+                className="bg-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
+              >
+                3. Configurar 2FA
+              </Link>
+              <Link
+                href="/dashboard"
+                className="bg-orange-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
+              >
+                4. Dashboard
+              </Link>
+            </div>
+            <div className="mt-6 text-sm text-gray-500 bg-gray-100 rounded-lg p-4">
+              <p className="font-semibold mb-2">Como testar:</p>
+              <p>• Crie uma conta ou use: newuser@example.com / TestPassword123</p>
+              <p>• Configure 2FA e use o código 123456 para testar</p>
+              <p>• No dashboard, vá em Configurações para gerenciar 2FA</p>
+            </div>
           </div>
         </section>
 
@@ -71,17 +113,17 @@ export default function LandingPage() {
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <div className="card-glass p-8 text-center">
+            <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-8 text-center">
               <h3 className="text-2xl font-semibold mb-4">🧠 PolicyDNA™</h3>
               <p>IA proprietária que encontra políticas similares e prevê sucesso com 85% de precisão</p>
             </div>
 
-            <div className="card-glass p-8 text-center">
+            <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-8 text-center">
               <h3 className="text-2xl font-semibold mb-4">🏙️ Gêmeo Digital</h3>
               <p>Simulação 3D da sua cidade com cidadãos virtuais para testar políticas</p>
             </div>
 
-            <div className="card-glass p-8 text-center">
+            <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-8 text-center">
               <h3 className="text-2xl font-semibold mb-4">🗳️ Facebook das Necessidades</h3>
               <p>Engajamento cidadão com votação em tempo real e democracia participativa</p>
             </div>
@@ -95,39 +137,39 @@ export default function LandingPage() {
           </h2>
 
           <div className="grid md:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            <div className="card-glass p-6 text-center">
+            <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">🆓 Free</h3>
               <p className="text-3xl font-bold mb-4">R$ 0/mês</p>
               <p className="text-sm mb-4">Municípios &lt;25k habitantes</p>
-              <Link href="/pricing" className="btn-glass w-full">Ver Detalhes</Link>
+              <Link href="/pricing" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105 w-full block text-center">Ver Detalhes</Link>
             </div>
 
-            <div className="card-glass p-6 text-center border-2 border-blue-500">
+            <div className="bg-white/25 backdrop-blur-sm border-2 border-blue-500 rounded-2xl p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">💳 Starter</h3>
               <p className="text-3xl font-bold mb-4">R$ 20k/mês</p>
               <p className="text-sm mb-4">25k-50k habitantes</p>
-              <Link href="/pricing" className="btn-glass-primary w-full">Mais Popular</Link>
+              <Link href="/pricing" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105 w-full block text-center">Mais Popular</Link>
             </div>
 
-            <div className="card-glass p-6 text-center">
+            <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">💼 Professional</h3>
               <p className="text-3xl font-bold mb-4">R$ 50k/mês</p>
               <p className="text-sm mb-4">50k-100k habitantes</p>
-              <Link href="/pricing" className="btn-glass w-full">Ver Detalhes</Link>
+              <Link href="/pricing" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105 w-full block text-center">Ver Detalhes</Link>
             </div>
 
-            <div className="card-glass p-6 text-center">
+            <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-6 text-center">
               <h3 className="text-xl font-semibold mb-2">🏢 Enterprise</h3>
               <p className="text-3xl font-bold mb-4">R$ 150k/mês</p>
               <p className="text-sm mb-4">&gt;100k habitantes</p>
-              <Link href="/pricing" className="btn-glass w-full">Ver Detalhes</Link>
+              <Link href="/pricing" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105 w-full block text-center">Ver Detalhes</Link>
             </div>
           </div>
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="card-glass mx-6 mt-16 p-8">
+      <footer className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-16 p-8">
         <div className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto">
           <div>
             <h4 className="font-semibold mb-4">Produto</h4>
