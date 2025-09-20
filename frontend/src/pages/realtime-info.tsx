@@ -84,8 +84,8 @@ export default function RealtimeInfoPage() {
     {
       id: '5',
       title: 'Governo de SP Lança Plataforma de Gestão Municipal',
-      summary: 'Nova ferramenta oferece dashboards e analytics para prefeitos paulistas.',
-      content: 'O Governo do Estado de São Paulo lançou uma plataforma digital que oferece ferramentas de gestão municipal, incluindo dashboards em tempo real, analytics preditivo e integração com sistemas federais...',
+      summary: 'Nova ferramenta oferece quadros e analytics para prefeitos paulistas.',
+      content: 'O Governo do Estado de São Paulo lançou uma plataforma digital que oferece ferramentas de gestão municipal, incluindo quadros em tempo real, analytics preditivo e integração com sistemas federais...',
       category: 'state',
       source: 'Governo de SP',
       timestamp: new Date(Date.now() - 1000 * 60 * 180),

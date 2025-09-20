@@ -2,11 +2,11 @@ import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default function AdvancedAnalyticsDashboardPage() {
+export default function AdvancedAnalyticsQuadroPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50">
       <Head>
-        <title>Advanced Analytics Dashboard - PolicyLabs APSS</title>
+        <title>Advanced Analytics Quadro - PolicyLabs</title>
         <meta name="description" content="Comprehensive analytics and intelligence platform for municipal governance" />
       </Head>
 
@@ -27,7 +27,7 @@ export default function AdvancedAnalyticsDashboardPage() {
 
       <main className="pt-24 px-6">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-8">📊 Advanced Analytics Dashboard</h1>
+          <h1 className="text-4xl font-bold mb-8">📊 Advanced Analytics Quadro</h1>
 
           {/* Tier Access Control */}
           <div className="card-glass p-6 mb-8 bg-gradient-to-r from-slate-100 to-gray-100">

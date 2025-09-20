@@ -3,7 +3,7 @@ n<div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-
 import Head from 'next/head';
 import Link from 'next/link';
 
-export default function AdminDashboardPage() {
+export default function AdminQuadroPage() {
   return (
     <>
       <Head>
@@ -92,7 +92,7 @@ export default function AdminDashboardPage() {
                   <Link href="/admin/analytics" className="card-glass p-6 hover:scale-105 transition-all">
                     <h3 className="text-lg font-bold mb-3">📊 Analytics</h3>
                     <p className="text-sm text-gray-600 mb-4">Métricas de uso e performance</p>
-                    <div className="text-xs text-blue-600">Dashboards ativos</div>
+                    <div className="text-xs text-blue-600">Quadros ativos</div>
                   </Link>
                 </div>
               </div>

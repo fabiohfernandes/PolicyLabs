@@ -15,18 +15,19 @@ export default function LandingPage() {
       <header className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center space-x-2">
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/sobre" className="flex items-center space-x-2">
               <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-              <span className="text-xl font-bold">PolicyLabs APSS</span>
+              <span className="text-xl font-bold">PolicyLabs</span>
             </Link>
           </div>
 
           <div className="hidden md:flex space-x-6">
+            <Link href="/sobre" className="hover:text-blue-600">Sobre</Link>
+            <Link href="/policydna" className="hover:text-blue-600">PolicyDNA</Link>
             <Link href="/product" className="hover:text-blue-600">Produto</Link>
             <Link href="/pricing" className="hover:text-blue-600">Preços</Link>
             <Link href="/cases" className="hover:text-blue-600">Casos de Sucesso</Link>
             <Link href="/resources" className="hover:text-blue-600">Recursos</Link>
-            <Link href="/blog" className="hover:text-blue-600">Blog</Link>
             <Link href="/contact" className="hover:text-blue-600">Contato</Link>
           </div>
 
@@ -41,7 +42,7 @@ export default function LandingPage() {
       <main className="pt-4">
         <section className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-8 p-12 text-center">
           <h1 className="text-6xl font-bold mb-6 text-gradient">
-            PolicyLabs APSS
+            PolicyLabs
           </h1>
           <p className="text-2xl text-gray-600 mb-8">
             "Onde a Política Encontra a Precisão"
@@ -65,6 +66,77 @@ export default function LandingPage() {
         </section>
 
 
+        {/* Problem Section */}
+        <section className="mx-6 mt-16">
+          <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-12">
+            <h2 className="text-4xl font-bold text-center mb-8 text-red-600">
+              O Problema é Real
+            </h2>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              <div className="text-center">
+                <div className="text-4xl font-bold text-red-500 mb-2">73%</div>
+                <p className="text-sm">dos administradores brasileiros carecem de formação em administração pública</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-red-500 mb-2">US$ 2,8T</div>
+                <p className="text-sm">desperdiçados globalmente em políticas ineficazes</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-red-500 mb-2">45-60%</div>
+                <p className="text-sm">taxa de falha de políticas por avaliação inadequada</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-red-500 mb-2">78%</div>
+                <p className="text-sm">dos cidadãos excluídos das decisões de política pública</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-red-500 mb-2">2,3x</div>
+                <p className="text-sm">custo médio para reverter políticas fracassadas</p>
+              </div>
+              <div className="text-center">
+                <div className="text-4xl font-bold text-green-500 mb-2">💡</div>
+                <p className="text-sm font-semibold text-green-600">PolicyLabs é a solução</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Solution Section */}
+        <section className="mx-6 mt-16">
+          <div className="bg-gradient-to-r from-blue-50 to-purple-50 border border-white/30 rounded-2xl p-12">
+            <h2 className="text-4xl font-bold text-center mb-8">
+              🚀 "O Uber da Gestão Pública"
+            </h2>
+            <p className="text-xl text-center text-gray-600 mb-12 max-w-4xl mx-auto">
+              Projetos e políticas sob demanda em poucos cliques, baseados em sucessos comprovados,
+              com simulação prévia de resultados e engajamento cidadão integrado.
+            </p>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+              <div className="bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-4">📱</div>
+                <h3 className="font-semibold mb-2">Netflix Gov</h3>
+                <p className="text-sm">Sistema de recomendação de políticas baseado em sucessos similares</p>
+              </div>
+              <div className="bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-4">🚗</div>
+                <h3 className="font-semibold mb-2">Uber da Gestão</h3>
+                <p className="text-sm">Projetos sob demanda com poucos cliques</p>
+              </div>
+              <div className="bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-4">🛒</div>
+                <h3 className="font-semibold mb-2">Amazon Municipal</h3>
+                <p className="text-sm">Marketplace de soluções pré-testadas</p>
+              </div>
+              <div className="bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl p-6 text-center">
+                <div className="text-3xl mb-4">🚀</div>
+                <h3 className="font-semibold mb-2">Tesla Gov</h3>
+                <p className="text-sm">Automação libertando servidores para atividades essenciais</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
         {/* Features Section */}
         <section className="mx-6 mt-16">
           <h2 className="text-4xl font-bold text-center mb-12">
@@ -85,6 +157,38 @@ export default function LandingPage() {
             <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-8 text-center">
               <h3 className="text-2xl font-semibold mb-4">🗳️ Facebook das Necessidades</h3>
               <p>Engajamento cidadão com votação em tempo real e democracia participativa</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Impact Section */}
+        <section className="mx-6 mt-16">
+          <div className="bg-gradient-to-r from-green-50 to-blue-50 border border-white/30 rounded-2xl p-12">
+            <h2 className="text-4xl font-bold text-center mb-12">
+              🎯 Impacto Esperado
+            </h2>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+              <div className="text-center">
+                <div className="text-5xl font-bold text-green-500 mb-2">100x</div>
+                <p className="font-semibold">Velocidade</p>
+                <p className="text-sm text-gray-600">IA gerando documentos instantâneos</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-bold text-blue-500 mb-2">50%</div>
+                <p className="font-semibold">Tempo Reduzido</p>
+                <p className="text-sm text-gray-600">na implementação de políticas</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-bold text-purple-500 mb-2">85%+</div>
+                <p className="font-semibold">Taxa de Sucesso</p>
+                <p className="text-sm text-gray-600">de políticas implementadas</p>
+              </div>
+              <div className="text-center">
+                <div className="text-5xl font-bold text-orange-500 mb-2">10x</div>
+                <p className="font-semibold">Participação</p>
+                <p className="text-sm text-gray-600">cidadã nas decisões</p>
+              </div>
             </div>
           </div>
         </section>

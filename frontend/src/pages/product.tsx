@@ -98,7 +98,7 @@ export default function ProductPage() {
               <ul className="text-sm text-gray-500 space-y-2">
                 <li>• Consultas populares</li>
                 <li>• Feedback contínuo</li>
-                <li>• Dashboard transparente</li>
+                <li>• Quadro transparente</li>
               </ul>
             </div>
           </div>

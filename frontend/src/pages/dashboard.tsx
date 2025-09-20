@@ -147,8 +147,8 @@ export default function DashboardPage() {
   return (
     <>
       <Head>
-        <title>Quadro Geral | PolicyLabs APSS</title>
-        <meta name="description" content="Quadro Geral do PolicyLabs APSS - Gestão Municipal Inteligente" />
+        <title>Quadro | PolicyLabs</title>
+        <meta name="description" content="Quadro do PolicyLabs - Gestão Municipal Inteligente" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -156,9 +156,9 @@ export default function DashboardPage() {
         <header className="card-glass mx-6 mt-4 px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Link href="/dashboard" className="flex items-center space-x-2">
+              <Link href="/sobre" className="flex items-center space-x-2">
                 <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-                <span className="text-xl font-bold">PolicyLabs APSS</span>
+                <span className="text-xl font-bold">PolicyLabs</span>
               </Link>
               <div className="text-sm text-gray-500">
                 {municipalData.municipality} • {municipalData.population} hab. • Plano {municipalData.tier}
@@ -190,6 +190,10 @@ export default function DashboardPage() {
 
               <Link href="/realtime-info" className="btn-glass px-4 py-2 hover:scale-105 transition-transform">
                 📰 Novidades
+              </Link>
+
+              <Link href="/policydna" className="btn-glass px-4 py-2 hover:scale-105 transition-transform">
+                🧠 PolicyDNA
               </Link>
 
               {/* Modules (Plan-dependent) */}
@@ -234,8 +238,8 @@ export default function DashboardPage() {
                     <Link href="/create/policy" className="block btn-glass w-full text-left p-2">
                       📋 Nova Política
                     </Link>
-                    <Link href="/create/voting" className="block btn-glass w-full text-left p-2">
-                      🗳️ Nova Votação
+                    <Link href="/create/consulta" className="block btn-glass w-full text-left p-2">
+                      🗳️ Nova Consulta
                     </Link>
                     <Link href="/create/document" className="block btn-glass w-full text-left p-2">
                       📄 Novo Documento
@@ -265,10 +269,10 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* Quadro Geral */}
+              {/* Quadro */}
               <div className="relative group">
                 <button className="btn-glass-primary px-4 py-2 hover:scale-105 transition-transform">
-                  📊 Quadro Geral
+                  📊 Quadro
                   <span className="ml-2 text-xs">▼</span>
                 </button>
                 <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
@@ -493,7 +497,7 @@ export default function DashboardPage() {
             <div className="card-glass p-8 text-center">
               <h2 className="text-2xl font-bold mb-4">📈 Analytics Avançado</h2>
               <p className="text-gray-600 mb-6">
-                Dashboards e relatórios detalhados sobre performance municipal
+                Quadros e relatórios detalhados sobre performance municipal
               </p>
               <button className="btn-glass-primary">
                 Em Desenvolvimento

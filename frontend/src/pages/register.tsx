@@ -412,7 +412,7 @@ export default function RegisterPage() {
               <div className="text-6xl mb-4">🎉</div>
               <h2 className="text-2xl font-bold mb-4">Conta Criada com Sucesso!</h2>
               <p className="text-gray-600 mb-8">
-                Sua conta foi criada e o 2FA foi configurado. Você já está logado e sendo redirecionado para o Quadro Geral.
+                Sua conta foi criada e o 2FA foi configurado. Você já está logado e sendo redirecionado para o Quadro.
               </p>
 
               <Link
