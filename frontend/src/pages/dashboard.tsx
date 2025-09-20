@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 interface User {
   id: string;
@@ -182,6 +183,7 @@ export default function DashboardPage() {
                   })}
                 </span>
               </div>
+              <ThemeToggle variant="icon" size="sm" />
               <button onClick={handleLogout} className="btn-glass text-sm">
                 Sair
               </button>

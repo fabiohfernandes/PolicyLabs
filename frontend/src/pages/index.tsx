@@ -1,64 +1,66 @@
 import React from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function LandingPage() {
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
       <Head>
         <title>PolicyLabs APSS - Onde a Política Encontra a Precisão</title>
         <meta name="description" content="Sistema Operacional para Gestão Pública Global - Uber da Gestão Pública" />
       </Head>
 
       {/* Navigation Header */}
-      <header className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-4 px-6 py-4">
+      <header className="bg-white/25 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 rounded-2xl mx-6 mt-4 px-6 py-4">
         <div className="flex justify-between items-center max-w-7xl mx-auto">
           <div className="flex items-center space-x-2">
             <div className="flex items-center space-x-2">
               <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-              <span className="text-xl font-bold">PolicyLabs</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-gray-100">PolicyLabs</span>
             </div>
           </div>
 
           <div className="hidden md:flex space-x-6">
-            <Link href="/sobre" className="hover:text-blue-600">Sobre</Link>
-            <Link href="/policydnaext" className="hover:text-blue-600">PolicyDNA</Link>
-            <Link href="/pricing" className="hover:text-blue-600">Preços</Link>
-            <Link href="/cases" className="hover:text-blue-600">Casos de Sucesso</Link>
-            <Link href="/resources" className="hover:text-blue-600">Recursos</Link>
-            <Link href="/contact" className="hover:text-blue-600">Contato</Link>
+            <Link href="/sobre" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Sobre</Link>
+            <Link href="/policydnaext" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">PolicyDNA</Link>
+            <Link href="/pricing" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Preços</Link>
+            <Link href="/cases" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Casos de Sucesso</Link>
+            <Link href="/resources" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Recursos</Link>
+            <Link href="/contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contato</Link>
           </div>
 
-          <div className="flex space-x-4">
-            <Link href="/login" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105">Entrar</Link>
-            <Link href="/register" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105">Começar Grátis</Link>
+          <div className="flex items-center space-x-4">
+            <ThemeToggle variant="icon" size="md" />
+            <Link href="/login" className="bg-white/25 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 dark:text-gray-200 hover:scale-105">Entrar</Link>
+            <Link href="/register" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 dark:from-blue-500/80 dark:to-purple-500/80 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105">Começar Grátis</Link>
           </div>
         </div>
       </header>
 
       {/* Hero Section */}
       <main className="pt-4">
-        <section className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl mx-6 mt-8 p-12 text-center">
+        <section className="bg-white/25 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 rounded-2xl mx-6 mt-8 p-12 text-center">
           <h1 className="text-6xl font-bold mb-6 text-gradient">
             PolicyLabs
           </h1>
-          <p className="text-2xl text-gray-600 mb-8">
+          <p className="text-2xl text-gray-600 dark:text-gray-300 mb-8">
             "Onde a Política Encontra a Precisão"
           </p>
-          <p className="text-xl text-gray-500 mb-12 max-w-4xl mx-auto">
+          <p className="text-xl text-gray-500 dark:text-gray-400 mb-12 max-w-4xl mx-auto">
             O primeiro Sistema Operacional para Gestão Pública Global.
             Transforme sua administração com IA, PolicyDNA™ e o "Uber da Gestão Pública".
           </p>
 
           <div className="flex gap-6 justify-center">
-            <Link href="/register" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-white hover:scale-105">
+            <Link href="/register" className="bg-gradient-to-r from-blue-600/80 to-purple-600/80 dark:from-blue-500/80 dark:to-purple-500/80 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-white hover:scale-105">
               🚀 Começar Gratuitamente
             </Link>
-            <Link href="/register" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
+            <Link href="/register" className="bg-white/25 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 dark:text-gray-200 hover:scale-105">
               Ver Demo ao Vivo
             </Link>
-            <Link href="/contact" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
+            <Link href="/contact" className="bg-white/25 dark:bg-white/10 backdrop-blur-sm border border-white/30 dark:border-white/20 rounded-xl text-lg px-8 py-4 font-medium transition-all duration-300 text-gray-800 dark:text-gray-200 hover:scale-105">
               Agendar Demonstração
             </Link>
           </div>

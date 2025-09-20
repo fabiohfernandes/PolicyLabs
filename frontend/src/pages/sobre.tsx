@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function SobrePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -19,7 +20,7 @@ export default function SobrePage() {
         <meta name="description" content="Onde a Política Encontra a Precisão - Democratizando o acesso a tecnologia sofisticada de simulação de políticas" />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         {/* Simple Navigation */}
         <header className="mx-6 mt-4 px-6 py-4">
           <div className="flex justify-between items-center max-w-7xl mx-auto">
@@ -34,7 +35,8 @@ export default function SobrePage() {
               <h1 className="text-xl font-semibold">Sobre a PolicyLabs</h1>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center space-x-4">
+              <ThemeToggle variant="icon" size="sm" />
               <Link href="/" className="btn-glass text-sm">
                 Voltar
               </Link>
