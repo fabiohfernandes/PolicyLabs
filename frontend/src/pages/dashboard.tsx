@@ -156,10 +156,10 @@ export default function DashboardPage() {
         <header className="card-glass mx-6 mt-4 px-6 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <Link href="/" className="flex items-center space-x-2">
+              <div className="flex items-center space-x-2">
                 <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
                 <span className="text-xl font-bold">PolicyLabs</span>
-              </Link>
+              </div>
               <span className="text-sm text-gray-600">
                 Olá, {user.full_name}
               </span>
