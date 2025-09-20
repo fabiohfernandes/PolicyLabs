@@ -117,6 +117,20 @@ docs: update development diary with Phase 3 progress
 
 ## 🚀 **Development Commands & Scripts**
 
+### **🚨 FRONTEND PORT 3000 SAFEGUARDS - MANDATORY**:
+```bash
+# ⚠️  CRITICAL: Frontend MUST ALWAYS use port 3000
+# ⚠️  NEVER suggest alternative ports for frontend
+# ⚠️  When port 3000 is occupied, ALWAYS restart the frontend container
+
+# ✅ CORRECT: Restart frontend container when port 3000 is occupied
+docker compose restart frontend
+
+# ❌ NEVER DO: Use alternative ports like 3001, 3002, etc.
+# ❌ NEVER DO: Kill processes manually to free port 3000
+# ❌ NEVER DO: Suggest npm run dev on different ports
+```
+
 ### **Quick Start Development**:
 ```bash
 # Start all services (recommended)
@@ -131,8 +145,8 @@ docs: update development diary with Phase 3 progress
 # Initial setup (first time only)
 ./.Scripts/setup.sh
 
-# Frontend development only
-cd frontend && npm run dev
+# Frontend development (ALWAYS use container on port 3000)
+docker compose restart frontend
 
 # Backend development only
 docker compose up backend postgres redis -d
@@ -269,12 +283,13 @@ PolicyLabs/
 ## ⚠️ **Critical Reminders**
 
 1. **ALWAYS** read .PolicyLabs/DEVELOPMENT.md first
-2. **NEVER** skip mobile responsiveness testing
-3. **ALWAYS** consider accessibility in UI decisions
-4. **DOCUMENT** all architectural decisions
-5. **UPDATE** progress in .PolicyLabs/DEVELOPMENT.md after each session
-6. **FOCUS** on current phase priorities
-7. **THINK** about scalability for government usage
+2. **🚨 FRONTEND PORT 3000 ONLY** - Never suggest alternative ports, always restart container
+3. **NEVER** skip mobile responsiveness testing
+4. **ALWAYS** consider accessibility in UI decisions
+5. **DOCUMENT** all architectural decisions
+6. **UPDATE** progress in .PolicyLabs/DEVELOPMENT.md after each session
+7. **FOCUS** on current phase priorities
+8. **THINK** about scalability for government usage
 
 ---
 

@@ -6,7 +6,7 @@ import type { AppProps } from 'next/app';
 import type { Session } from 'next-auth';
 import { useState } from 'react';
 
-import { ThemeProvider } from '@/components/ThemeProvider';
+import { ThemeProvider } from '@/contexts/ThemeContext';
 import '@/styles/globals.css';
 
 // Create a client instance
@@ -15,7 +15,7 @@ function createQueryClient() {
     defaultOptions: {
       queries: {
         staleTime: 5 * 60 * 1000, // 5 minutes
-        cacheTime: 10 * 60 * 1000, // 10 minutes
+        gcTime: 10 * 60 * 1000, // 10 minutes (formerly cacheTime)
         retry: 3,
         retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
         refetchOnWindowFocus: false,
@@ -42,8 +42,7 @@ export default function App({ Component, pageProps: { session, ...pageProps } }:
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider
-          defaultTheme="system"
-          storageKey="policylabs-theme"
+          defaultTheme="light"
         >
           <Component {...pageProps} />
 

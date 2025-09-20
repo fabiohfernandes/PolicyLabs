@@ -21,7 +21,6 @@ export default function Document() {
 
         {/* Security headers */}
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta httpEquiv="X-Frame-Options" content="DENY" />
         <meta httpEquiv="X-XSS-Protection" content="1; mode=block" />
 
         {/* OpenGraph meta tags for social sharing */}
@@ -39,26 +38,11 @@ export default function Document() {
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="PolicyLabs" />
 
-        {/* Preload critical fonts */}
+        {/* Inter font */}
         <link
-          rel="preload"
           href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-          as="style"
-          onLoad={(e) => {
-            if (e.target instanceof HTMLLinkElement) {
-              e.target.onload = null;
-              e.target.rel = 'stylesheet';
-            }
-          }}
+          rel="stylesheet"
         />
-
-        {/* Fallback for users with JavaScript disabled */}
-        <noscript>
-          <link
-            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-          />
-        </noscript>
 
         {/* Structured data for SEO */}
         <script

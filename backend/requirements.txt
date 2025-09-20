@@ -26,7 +26,7 @@ langchain==0.1.0
 langchain-openai==0.0.2
 weaviate-client==3.25.3
 sentence-transformers==2.2.2
-tiktoken==0.5.1
+tiktoken==0.5.2
 
 # Data Processing
 pandas==2.1.3

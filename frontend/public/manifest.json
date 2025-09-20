@@ -1,0 +1,31 @@
+{
+  "name": "PolicyLabs APSS",
+  "short_name": "PolicyLabs",
+  "description": "AI Policy Simulation System for Brazilian Municipal Governments",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "16x16",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["government", "productivity", "business"],
+  "lang": "pt-BR",
+  "scope": "/",
+  "id": "policylabs-apss"
+}

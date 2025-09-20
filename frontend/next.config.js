@@ -39,12 +39,16 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}/api/:path*`,
+        source: '/api/backend/:path*',
+        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'}/:path*`,
       },
     ];
   },
-  // Environment variables are automatically loaded from .env files
+  // Environment variables configuration
+  env: {
+    // All env vars are automatically loaded from .env files
+    // This section is only needed for custom variables
+  },
   // Performance optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
