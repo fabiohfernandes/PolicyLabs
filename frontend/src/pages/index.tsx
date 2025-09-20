@@ -64,47 +64,6 @@ export default function LandingPage() {
           </div>
         </section>
 
-        {/* Demo Section for 2FA */}
-        <section className="mx-6 mt-16">
-          <div className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-2xl p-8 text-center">
-            <h2 className="text-3xl font-bold mb-4">🔐 Teste a Autenticação 2FA</h2>
-            <p className="text-lg text-gray-600 mb-6">
-              Experimente nosso sistema de autenticação de dois fatores com TOTP
-            </p>
-            <div className="flex gap-4 justify-center flex-wrap">
-              <Link
-                href="/register"
-                className="bg-blue-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
-              >
-                1. Criar Conta
-              </Link>
-              <Link
-                href="/login"
-                className="bg-green-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
-              >
-                2. Fazer Login
-              </Link>
-              <Link
-                href="/setup-2fa"
-                className="bg-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
-              >
-                3. Configurar 2FA
-              </Link>
-              <Link
-                href="/dashboard"
-                className="bg-orange-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white hover:scale-105"
-              >
-                4. Dashboard
-              </Link>
-            </div>
-            <div className="mt-6 text-sm text-gray-500 bg-gray-100 rounded-lg p-4">
-              <p className="font-semibold mb-2">Como testar:</p>
-              <p>• Crie uma conta ou use: newuser@example.com / TestPassword123</p>
-              <p>• Configure 2FA e use o código 123456 para testar</p>
-              <p>• No dashboard, vá em Configurações para gerenciar 2FA</p>
-            </div>
-          </div>
-        </section>
 
         {/* Features Section */}
         <section className="mx-6 mt-16">

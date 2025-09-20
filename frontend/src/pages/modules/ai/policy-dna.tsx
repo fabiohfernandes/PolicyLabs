@@ -20,7 +20,7 @@ export default function PolicyDNAPage() {
 
           <div className="flex items-center space-x-4">
             <span className="text-sm">PolicyDNA™ Engine</span>
-            <Link href="/dashboard" className="btn-glass">← Dashboard</Link>
+            <Link href="/dashboard" className="btn-glass">← Voltar</Link>
           </div>
         </div>
       </nav>

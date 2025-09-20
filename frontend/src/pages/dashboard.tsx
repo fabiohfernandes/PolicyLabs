@@ -141,8 +141,8 @@ export default function DashboardPage() {
   return (
     <>
       <Head>
-        <title>Dashboard | PolicyLabs APSS</title>
-        <meta name="description" content="Dashboard do PolicyLabs APSS - Gestão Municipal Inteligente" />
+        <title>Quadro Geral | PolicyLabs APSS</title>
+        <meta name="description" content="Quadro Geral do PolicyLabs APSS - Gestão Municipal Inteligente" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
@@ -192,7 +192,7 @@ export default function DashboardPage() {
                   🧩 Módulos
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-64 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-64 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/modules/policy-dna" className="block btn-glass w-full text-left p-2">
                       🧠 PolicyDNA™
@@ -220,7 +220,7 @@ export default function DashboardPage() {
                   ➕ Criar
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/create/project" className="block btn-glass w-full text-left p-2">
                       📁 Novo Projeto
@@ -244,7 +244,7 @@ export default function DashboardPage() {
                   🏦 Bancos
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/bank/ideas" className="block btn-glass w-full text-left p-2">
                       💡 Banco de Ideias
@@ -259,13 +259,13 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              {/* Dashboard */}
+              {/* Quadro Geral */}
               <div className="relative group">
                 <button className="btn-glass-primary px-4 py-2 hover:scale-105 transition-transform">
-                  📊 Dashboard
+                  📊 Quadro Geral
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-56 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <button
                       onClick={() => setActiveTab('overview')}
@@ -283,6 +283,12 @@ export default function DashboardPage() {
                     >
                       📋 Políticas
                     </button>
+                    <Link href="/projects" className="block btn-glass w-full text-left p-2">
+                      📁 Projetos
+                    </Link>
+                    <Link href="/votings" className="block btn-glass w-full text-left p-2">
+                      🗳️ Votações
+                    </Link>
                     <button
                       onClick={() => setActiveTab('analytics')}
                       className={`block w-full text-left p-2 transition-all ${
@@ -309,7 +315,7 @@ export default function DashboardPage() {
                   📈 Estatísticas
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full left-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/stats/city" className="block btn-glass w-full text-left p-2">
                       🏛️ Cidade
@@ -333,7 +339,7 @@ export default function DashboardPage() {
                   ⚙️ Config
                   <span className="ml-2 text-xs">▼</span>
                 </button>
-                <div className="absolute top-full right-0 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
+                <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-48 bg-white border border-gray-200 shadow-lg rounded-lg p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-[9999]">
                   <div className="space-y-2">
                     <Link href="/config/profile" className="block btn-glass w-full text-left p-2">
                       👤 Perfil

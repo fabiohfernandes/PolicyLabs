@@ -123,7 +123,7 @@ export default function Setup2FAPage() {
           </Link>
           <div className="flex space-x-4">
             <Link href="/dashboard" className="bg-white/25 backdrop-blur-sm border border-white/30 rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800 hover:scale-105">
-              Dashboard
+              Voltar
             </Link>
           </div>
         </div>
@@ -245,7 +245,7 @@ export default function Setup2FAPage() {
                   href="/dashboard"
                   className="inline-block bg-gradient-to-r from-blue-600/80 to-purple-600/80 backdrop-blur-sm border border-white/30 rounded-xl px-8 py-3 text-lg font-medium transition-all duration-300 text-white hover:scale-105"
                 >
-                  Ir para Dashboard
+                  Voltar
                 </Link>
 
                 <div className="pt-4">

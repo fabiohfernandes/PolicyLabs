@@ -183,8 +183,8 @@ const LegalComplianceDashboard = () => {
   return (
     <>
       <Head>
-        <title>Legal Compliance Dashboard | PolicyLabs</title>
-        <meta name="description" content="Dashboard de conformidade legal e regulatória para municípios" />
+        <title>Quadro de Conformidade Legal | PolicyLabs</title>
+        <meta name="description" content="Quadro de conformidade legal e regulatória para municípios" />
       </Head>
 
       <div className="min-h-screen bg-gradient-to-br from-blue-900 via-purple-900 to-indigo-900">
@@ -194,12 +194,12 @@ const LegalComplianceDashboard = () => {
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-4">
                 <Link href="/dashboard" className="text-white/70 hover:text-white">
-                  ← Dashboard
+                  ← Voltar
                 </Link>
                 <div className="flex items-center space-x-3">
                   <ScaleIcon className="h-8 w-8 text-blue-400" />
                   <div>
-                    <h1 className="text-2xl font-bold text-white">Legal Compliance Dashboard</h1>
+                    <h1 className="text-2xl font-bold text-white">Quadro de Conformidade Legal</h1>
                     <p className="text-white/70">Monitoramento de conformidade legal e regulatória</p>
                   </div>
                 </div>

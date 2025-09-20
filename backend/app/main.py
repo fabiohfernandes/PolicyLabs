@@ -19,6 +19,7 @@ import asyncio
 # Import our modules
 from app.database import check_database_connection, health_check as db_health_check, init_async_db
 from app.auth_routes import router as auth_router
+from app.routes.chat import router as chat_router
 
 # Application setup
 app = FastAPI(
@@ -31,6 +32,7 @@ app = FastAPI(
 
 # Include authentication routes
 app.include_router(auth_router)
+app.include_router(chat_router)
 
 # CORS configuration for frontend integration
 app.add_middleware(
