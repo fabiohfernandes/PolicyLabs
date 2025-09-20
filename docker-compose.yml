@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   # Frontend - Next.js
   frontend:
@@ -16,8 +14,8 @@ services:
       - ./frontend:/app
       - /app/node_modules
       - /app/.next
-    depends_on:
-      - backend
+    # depends_on:
+      # - backend  # Temporarily disabled while fixing backend dependencies
     networks:
       - policylabs
 

@@ -1,12 +1,12 @@
-# Frontend Dockerfile - Next.js
+# Frontend Dockerfile - Next.js Development
 FROM node:18-alpine
 
 # Set working directory
 WORKDIR /app
 
-# Install dependencies
+# Install dependencies first (for better caching)
 COPY package*.json ./
-RUN npm ci --only=production
+RUN npm install
 
 # Copy source code
 COPY . .
@@ -20,5 +20,5 @@ USER node
 # Expose port
 EXPOSE 3000
 
-# Development command
+# Development command with hot reload
 CMD ["npm", "run", "dev"]

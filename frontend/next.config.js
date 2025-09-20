@@ -44,9 +44,7 @@ const nextConfig = {
       },
     ];
   },
-  env: {
-    CUSTOM_KEY: process.env.CUSTOM_KEY,
-  },
+  // Environment variables are automatically loaded from .env files
   // Performance optimizations
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',

@@ -1,0 +1,146 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Docker
+.dockerignore
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Database
+*.sqlite3
+*.db
+
+# Temporary files
+tmp/
+temp/
+
+# Package manager locks (keep package-lock.json for frontend)
+# yarn.lock
+
+# Production builds
+*.tgz
+*.tar.gz
+
+# AWS
+.aws/
+
+# Local development
+.local/
+.cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# Testing
+test-results/
+playwright-report/
+
+# Storybook
+storybook-static/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# pipenv
+Pipfile.lock
+
+# Poetry
+poetry.lock
+
+# Celery
+celerybeat-schedule
+celerybeat.pid
+
+# SageMath parsed files
+*.sage.py
+
+# Backup files
+*.bak
+*.backup
+*.tmp
+
+# Local configuration
+config.local.json
+settings.local.json
+
+# AI/ML model files
+*.pkl
+*.h5
+*.model
+models/
+checkpoints/
+
+# Vector database data
+weaviate_data/
+
+# Redis dumps
+dump.rdb
+
+# PostgreSQL
+*.sql~
+
+# Nginx logs
+access.log
+error.log
