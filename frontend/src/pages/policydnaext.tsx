@@ -27,19 +27,19 @@ const PolicyDNAExtPage = () => {
         <meta name="description" content="Conheça o PolicyDNA™, o motor de inteligência artificial que cria assinaturas genéticas para políticas públicas e democratiza a simulação inteligente de políticas governamentais." />
       </Head>
 
-      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900">
         {/* Simple Navigation */}
-        <header className="mx-6 mt-4 px-6 py-4">
+        <header className="bg-white/25 dark:bg-white/5 backdrop-blur-sm border border-white/30 dark:border-white/10 rounded-2xl mx-6 mt-4 px-6 py-4">
           <div className="flex justify-between items-center max-w-7xl mx-auto">
             <div className="flex items-center space-x-4">
               <Link href="/" className="flex items-center space-x-4">
                 <img src="/logo.svg" alt="PolicyLabs" className="h-8 w-8" />
-                <span className="text-xl font-bold">PolicyLabs</span>
+                <span className="text-xl font-bold text-gray-900 dark:text-gray-100">PolicyLabs</span>
               </Link>
             </div>
 
             <div className="flex items-center">
-              <h1 className="text-xl font-semibold">O que é PolicyDNA</h1>
+              <h1 className="text-xl font-semibold text-gray-900 dark:text-gray-100">O que é PolicyDNA</h1>
             </div>
 
             <div className="flex items-center">
@@ -54,17 +54,17 @@ const PolicyDNAExtPage = () => {
           <div className="max-w-7xl mx-auto">
             {/* Hero Section */}
             <div className="card-glass p-12 mb-8 text-center">
-              <div className="inline-flex items-center space-x-2 bg-blue-100 rounded-full px-4 py-2 mb-6">
+              <div className="inline-flex items-center space-x-2 bg-blue-100 dark:bg-blue-900/30 rounded-full px-4 py-2 mb-6">
                 <Brain className="h-5 w-5 text-blue-600" />
-                <span className="text-blue-800 text-sm font-medium">Powered by Advanced AI</span>
+                <span className="text-blue-800 dark:text-blue-300 text-sm font-medium">Powered by Advanced AI</span>
               </div>
 
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-6">
-                Policy<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">DNA™</span>
+              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-gray-100 mb-6">
+                Policy<span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-400 dark:to-purple-400">DNA™</span>
               </h1>
 
-              <p className="text-xl md:text-2xl text-gray-700 mb-8 max-w-4xl mx-auto leading-relaxed">
-                O primeiro motor de inteligência artificial que cria <span className="text-blue-600 font-semibold">assinaturas genéticas</span> para políticas públicas, democratizando a simulação inteligente de políticas governamentais.
+              <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+                O primeiro motor de inteligência artificial que cria <span className="text-blue-600 dark:text-blue-400 font-semibold">assinaturas genéticas</span> para políticas públicas, democratizando a simulação inteligente de políticas governamentais.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
