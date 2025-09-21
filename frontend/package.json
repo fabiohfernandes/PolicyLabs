@@ -5,6 +5,7 @@
   "description": "PolicyLabs APSS Frontend - Where Policy Meets Precision",
   "scripts": {
     "build": "next build",
+    "build:vercel": "npm install --legacy-peer-deps && next build",
     "dev": "next dev",
     "format": "prettier --write .",
     "lint": "next lint",
