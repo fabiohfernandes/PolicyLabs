@@ -10,6 +10,7 @@ services:
       - NODE_ENV=development
       - NEXT_PUBLIC_API_URL=http://localhost:8000
       - NEXT_PUBLIC_APP_URL=http://localhost:3000
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
     volumes:
       - ./frontend:/app
       - /app/node_modules
