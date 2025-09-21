@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ensure body background matches theme */
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-blue-50 via-white to-purple-50;
+  }
+
+  .dark body {
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
+  }
+}
+
 /* Basic glassmorphic components with dark mode support */
 @layer components {
   .card-glass {

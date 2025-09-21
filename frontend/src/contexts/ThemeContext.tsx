@@ -1,13 +1,11 @@
-'use client';
-
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { Theme, ThemeName, themes } from '@/styles/theme';
+
+type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
   theme: Theme;
-  themeName: ThemeName;
   toggleTheme: () => void;
-  setTheme: (themeName: ThemeName) => void;
+  setTheme: (theme: Theme) => void;
   isDark: boolean;
 }
 
@@ -16,93 +14,74 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 export const useTheme = () => {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    // Return default theme instead of throwing error during development
-    console.warn('useTheme must be used within a ThemeProvider. Using default theme.');
-    return {
-      theme: themes.light,
-      themeName: 'light' as ThemeName,
-      toggleTheme: () => {},
-      setTheme: () => {},
-      isDark: false,
-    };
+    throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
 };
 
 interface ThemeProviderProps {
   children: React.ReactNode;
-  defaultTheme?: ThemeName;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({
-  children,
-  defaultTheme = 'light',
-}) => {
-  const [themeName, setThemeName] = useState<ThemeName>(defaultTheme);
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+  const [theme, setTheme] = useState<Theme>('light');
   const [mounted, setMounted] = useState(false);
 
-  // Load theme from localStorage on mount
   useEffect(() => {
-    const savedTheme = localStorage.getItem('policylabs-theme') as ThemeName;
-    if (savedTheme && themes[savedTheme]) {
-      setThemeName(savedTheme);
-    }
     setMounted(true);
+    // Check localStorage for saved theme preference
+    const savedTheme = localStorage.getItem('policylabs-theme') as Theme;
+    if (savedTheme && (savedTheme === 'light' || savedTheme === 'dark')) {
+      setTheme(savedTheme);
+    } else {
+      // Check system preference
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      setTheme(prefersDark ? 'dark' : 'light');
+    }
   }, []);
 
-  // Save theme to localStorage when it changes
   useEffect(() => {
     if (mounted) {
-      localStorage.setItem('policylabs-theme', themeName);
-
-      // Update CSS custom properties
+      // Apply theme to document
       const root = document.documentElement;
-      const theme = themes[themeName];
+      if (theme === 'dark') {
+        root.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+      }
 
-      // Set theme colors as CSS custom properties
-      root.style.setProperty('--color-bg-primary', theme.colors.background.primary);
-      root.style.setProperty('--color-bg-secondary', theme.colors.background.secondary);
-      root.style.setProperty('--color-bg-tertiary', theme.colors.background.tertiary);
-      root.style.setProperty('--color-glass-bg', theme.colors.glass.background);
-      root.style.setProperty('--color-glass-border', theme.colors.glass.border);
-      root.style.setProperty('--color-text-primary', theme.colors.text.primary);
-      root.style.setProperty('--color-text-secondary', theme.colors.text.secondary);
-      root.style.setProperty('--color-brand-primary', theme.colors.brand.primary);
-      root.style.setProperty('--shadow-glass', theme.shadows.glass);
-      root.style.setProperty('--blur-backdrop', theme.blur.backdrop);
-      root.style.setProperty('--gradient-glass', theme.gradients.glass);
-      root.style.setProperty('--gradient-brand', theme.gradients.brand);
-
-      // Set data attribute for CSS targeting
-      root.setAttribute('data-theme', themeName);
+      // Save to localStorage
+      localStorage.setItem('policylabs-theme', theme);
     }
-  }, [themeName, mounted]);
+  }, [theme, mounted]);
 
   const toggleTheme = () => {
-    setThemeName(current => current === 'light' ? 'dark' : 'light');
+    setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light');
   };
 
-  const setTheme = (newTheme: ThemeName) => {
-    setThemeName(newTheme);
+  const value = {
+    theme,
+    toggleTheme,
+    setTheme,
+    isDark: theme === 'dark',
   };
 
-  const theme = themes[themeName];
-  const isDark = themeName === 'dark';
-
-  // Prevent hydration mismatch - use default theme until mounted
-  const currentTheme = mounted ? theme : themes.light;
-  const currentThemeName = mounted ? themeName : 'light';
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return (
+      <ThemeContext.Provider value={{
+        theme: 'light',
+        toggleTheme: () => {},
+        setTheme: () => {},
+        isDark: false,
+      }}>
+        {children}
+      </ThemeContext.Provider>
+    );
+  }
 
   return (
-    <ThemeContext.Provider
-      value={{
-        theme: currentTheme,
-        themeName: currentThemeName,
-        toggleTheme,
-        setTheme,
-        isDark: mounted ? isDark : false,
-      }}
-    >
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );
