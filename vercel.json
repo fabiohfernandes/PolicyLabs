@@ -5,13 +5,5 @@
   "outputDirectory": "frontend/.next",
   "installCommand": "cd frontend && npm install --legacy-peer-deps",
   "framework": "nextjs",
-  "functions": {
-    "frontend/src/pages/api/**/*.ts": {
-      "runtime": "nodejs18.x"
-    },
-    "frontend/src/pages/api/**/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "cleanUrls": true
 }
