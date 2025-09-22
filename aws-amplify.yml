@@ -1,0 +1,24 @@
+version: 1
+applications:
+  - frontend:
+      phases:
+        preBuild:
+          commands:
+            - cd frontend
+            - npm ci --legacy-peer-deps
+        build:
+          commands:
+            - npm run build
+      artifacts:
+        baseDirectory: frontend/.next
+        files:
+          - '**/*'
+      cache:
+        paths:
+          - frontend/node_modules/**/*
+      environment:
+        variables:
+          AMPLIFY_MONOREPO_APP_ROOT: frontend
+          NEXT_PUBLIC_API_URL: https://api.policylabs.com.br
+          NODE_ENV: production
+    appRoot: frontend
