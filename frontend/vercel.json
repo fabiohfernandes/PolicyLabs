@@ -8,6 +8,7 @@
     }
   ],
   "regions": ["gru1", "iad1"],
+  "cleanUrls": true,
   "functions": {
     "src/pages/api/**/*.ts": {
       "maxDuration": 30
