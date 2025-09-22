@@ -12,7 +12,7 @@ frontend:
       commands:
         - echo "Build completed successfully"
   artifacts:
-    baseDirectory: frontend/.next
+    baseDirectory: frontend/out
     files:
       - '**/*'
   cache:
