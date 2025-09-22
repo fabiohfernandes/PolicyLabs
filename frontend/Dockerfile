@@ -1,24 +1,52 @@
-# Frontend Dockerfile - Next.js Development
-FROM node:18-alpine
+# Multi-stage build for production deployment
+FROM node:18-alpine AS base
 
-# Set working directory
+# Install dependencies only when needed
+FROM base AS deps
 WORKDIR /app
 
-# Install dependencies first (for better caching)
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+# Install dependencies based on the preferred package manager
+COPY package.json package-lock.json* ./
+RUN npm ci --only=production --legacy-peer-deps
 
-# Copy source code
+# Rebuild the source code only when needed
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Create .next directory with proper permissions
-RUN mkdir -p .next && chown -R node:node /app
+# Set environment variables for build
+ENV NEXT_TELEMETRY_DISABLED 1
 
-# Switch to non-root user
-USER node
+# Build the application
+RUN npm run build
+
+# Production image, copy all the files and run next
+FROM base AS runner
+WORKDIR /app
+
+ENV NODE_ENV production
+ENV NEXT_TELEMETRY_DISABLED 1
+
+# Create nextjs user
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# Copy necessary files
+COPY --from=builder /app/public ./public
+
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
 
 # Expose port
 EXPOSE 3000
 
-# Development command with hot reload
-CMD ["npm", "run", "dev"]
+ENV PORT 3000
+ENV HOSTNAME "0.0.0.0"
+
+# Start the application
+CMD ["node", "server.js"]

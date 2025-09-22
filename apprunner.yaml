@@ -1,0 +1,21 @@
+version: 1.0
+runtime: docker
+build:
+  commands:
+    build:
+      - echo "Building PolicyLabs Frontend with OpenAI integration"
+      - cd frontend
+      - docker build -t policylabs-frontend .
+run:
+  runtime-version: latest
+  command: node server.js
+  network:
+    port: 3000
+    env: PORT
+  env:
+    - name: NODE_ENV
+      value: production
+    - name: NEXT_TELEMETRY_DISABLED
+      value: "1"
+    - name: OPENAI_API_KEY
+      value: $OPENAI_API_KEY

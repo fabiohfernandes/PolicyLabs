@@ -333,13 +333,22 @@ Estou aberto a discussões iterativas para aperfeiçoar este projeto. Que aspect
     setIsLoading(true);
 
     try {
-      // For static deployment - mock response
-      const data = {
-        response: `**Análise PolicyDNA™ - Demonstração**\n\nPara o projeto: "${message}"\n\n**Recomendações Iniciais:**\n\n• **Viabilidade:** Alta (85% de sucesso estimado)\n• **Orçamento Sugerido:** R$ 250.000 - R$ 500.000\n• **Prazo de Implementação:** 6-12 meses\n• **Stakeholders Chave:** Secretarias municipais, comunidade local\n\n**Próximos Passos:**\n1. Validação com dados municipais específicos\n2. Análise de impacto socioeconomico\n3. Estruturação do cronograma detalhado\n\n*Esta é uma demonstração do PolicyLabs APSS. Para análises completas com IA GPT-4, solicite acesso à plataforma completa.*`
-      };
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: message,
+          context: 'project_creation'
+        }),
+      });
 
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      if (!response.ok) {
+        throw new Error('Failed to get AI response');
+      }
+
+      const data = await response.json();
 
       const aiResponse: ChatMessage = {
         id: (Date.now() + 1).toString(),

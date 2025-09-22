@@ -143,13 +143,23 @@ export default function LocalIAPage() {
     setIsTyping(true);
 
     try {
-      // For static deployment - mock response
-      const data = {
-        response: `Esta é uma resposta de demonstração do PolicyLabs APSS para: "${messageToSend}"\n\nEste sistema de IA está otimizado para auxiliar gestores públicos brasileiros com:\n\n• Análise de políticas públicas\n• Sugestões de implementação\n• Benchmarking municipal\n• Simulações de impacto\n\nPara acessar a funcionalidade completa com OpenAI GPT-4, entre em contato conosco para ativar sua conta.`
-      };
+      // Real OpenAI API call
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: messageToSend,
+          context: currentChat.type === 'generic' ? 'general' : 'project_creation'
+        }),
+      });
 
-      // Simulate API delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      if (!response.ok) {
+        throw new Error('Failed to get AI response');
+      }
+
+      const data = await response.json();
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
