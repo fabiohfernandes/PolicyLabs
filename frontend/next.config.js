@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-  output: 'standalone',
+  // Vercel handles deployment automatically, no output config needed
   eslint: {
     ignoreDuringBuilds: true,
   },
