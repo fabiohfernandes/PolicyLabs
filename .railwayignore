@@ -1,0 +1,10 @@
+backend/
+database/
+docs/
+terraform/
+nginx/
+.Scripts/
+.PolicyLabs/
+.git/
+node_modules/
+*.log
