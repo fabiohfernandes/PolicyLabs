@@ -37,7 +37,13 @@ app.include_router(chat_router)
 # CORS configuration for frontend integration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "http://127.0.0.1:3000"],
+    allow_origins=[
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+        "https://www.policylabs.com.br",
+        "https://policylabs.com.br",
+        "https://*.up.railway.app"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
