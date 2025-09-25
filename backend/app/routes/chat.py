@@ -15,8 +15,12 @@ from app.models import User
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 
-# OpenAI Configuration
-client = AsyncOpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+# OpenAI Configuration - Initialize only when needed
+def get_openai_client():
+    api_key = os.getenv("OPENAI_API_KEY")
+    if not api_key:
+        raise HTTPException(status_code=500, detail="OpenAI API key not configured")
+    return AsyncOpenAI(api_key=api_key)
 
 class ChatMessage(BaseModel):
     role: str  # "user" or "assistant"
@@ -88,6 +92,7 @@ async def chat_completion(
             })
 
         # Call OpenAI API
+        client = get_openai_client()
         response = await client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=openai_messages,
@@ -140,6 +145,7 @@ async def chat_health():
     """
     try:
         # Test OpenAI connection
+        client = get_openai_client()
         models = await client.models.list()
         return {
             "status": "healthy",
