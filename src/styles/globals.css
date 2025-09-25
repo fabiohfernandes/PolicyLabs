@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ensure body background matches theme */
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-blue-50 via-white to-purple-50;
+  }
+
+  .dark body {
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
+  }
+}
+
+/* Basic glassmorphic components with dark mode support */
+@layer components {
+  .card-glass {
+    @apply rounded-2xl p-6 transition-all duration-300;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  }
+
+  .dark .card-glass {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  }
+
+  .btn-glass {
+    @apply relative overflow-hidden rounded-xl px-6 py-3 font-medium transition-all duration-300 text-gray-800;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  }
+
+  .dark .btn-glass {
+    @apply text-gray-200;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  .btn-glass-primary {
+    @apply relative overflow-hidden rounded-xl px-6 py-3 font-medium transition-all duration-300 text-white;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.8) 0%, rgba(99, 102, 241, 0.8) 100%);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+  }
+
+  .dark .btn-glass-primary {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.8) 0%, rgba(129, 140, 248, 0.8) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+
+  .dark .text-gradient {
+    @apply bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent;
+  }
+
+  .btn-glass:hover, .btn-glass-primary:hover {
+    @apply transform scale-105;
+  }
+
+  .dark .btn-glass:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  .dark .btn-glass-primary:hover {
+    background: linear-gradient(135deg, rgba(96, 165, 250, 0.9) 0%, rgba(129, 140, 248, 0.9) 100%);
+  }
+
+  /* Additional dark mode utilities */
+  .bg-gradient-light {
+    background: linear-gradient(135deg, rgba(248, 250, 252, 1) 0%, rgba(226, 232, 240, 1) 100%);
+  }
+
+  .dark .bg-gradient-light,
+  .bg-gradient-dark {
+    background: linear-gradient(135deg, rgba(15, 23, 42, 1) 0%, rgba(51, 65, 85, 1) 100%);
+  }
+
+  /* Theme-aware glassmorphic backgrounds */
+  .bg-glass-light {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .dark .bg-glass-light,
+  .bg-glass-dark {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
