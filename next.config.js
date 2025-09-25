@@ -44,10 +44,15 @@ const nextConfig = {
     ];
   },
   async rewrites() {
+    let apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000';
+    // Ensure URL has protocol
+    if (apiUrl && !apiUrl.startsWith('http')) {
+      apiUrl = `https://${apiUrl}`;
+    }
     return [
       {
         source: '/api/backend/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_URL || 'http://127.0.0.1:8000'}/:path*`,
+        destination: `${apiUrl}/:path*`,
       },
     ];
   },
