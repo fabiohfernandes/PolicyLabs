@@ -77,7 +77,7 @@ async def startup_event():
         else:
             print("Database connection successful")
             # Initialize database tables if needed
-            # await init_async_db()  # Uncomment for first-time setup
+            await init_async_db()  # Uncomment for first-time setup
     except Exception as e:
         print(f"Startup error: {e}")
 
