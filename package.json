@@ -10,7 +10,7 @@
   "author": "Fabio H Fernandes",
   "scripts": {
     "dev": "cd frontend && npm run dev",
-    "build": "cd frontend && npm run build",
+    "build": "cd frontend && npm install --legacy-peer-deps && npm run build",
     "start": "cd frontend && npm run start",
     "lint": "cd frontend && npm run lint",
     "type-check": "cd frontend && npm run type-check",
